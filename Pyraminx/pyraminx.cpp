@@ -242,59 +242,6 @@ void tetrahedron(){
 	count = 0;
 }
 
-// void draw_inner_pyramid(){
-// 	for(int i=0;i<4;i++){
-// 		inner_pyramid[i].vertices[0][0][0] = pyramid[i].vertices[1][0];
-// 		inner_pyramid[i].vertices[0][0][1] = pyramid[i].vertices[1][1];
-// 		inner_pyramid[i].vertices[0][0][2] = pyramid[i].vertices[1][2];
-// 		inner_pyramid[i].vertices[0][1][0] = pyramid[i].vertices[1][0] + 24.49;
-// 		inner_pyramid[i].vertices[0][1][1] = pyramid[i].vertices[1][1];
-// 		inner_pyramid[i].vertices[0][1][2] = pyramid[i].vertices[1][2];
-// 		inner_pyramid[i].vertices[0][2][0] = pyramid[i].vertices[1][0] + 12.245;
-// 		inner_pyramid[i].vertices[0][2][1] = pyramid[i].vertices[1][1] - 20.0;
-// 		inner_pyramid[i].vertices[0][2][2] = pyramid[i].vertices[1][2] + 7.07;
-
-// 		inner_pyramid[i].vertices[1][0][0] = pyramid[i].vertices[2][0];
-// 		inner_pyramid[i].vertices[1][0][1] = pyramid[i].vertices[2][1];
-// 		inner_pyramid[i].vertices[1][0][2] = pyramid[i].vertices[2][2];
-// 		inner_pyramid[i].vertices[1][1][0] = pyramid[i].vertices[2][0] - 12.245;
-// 		inner_pyramid[i].vertices[1][1][1] = pyramid[i].vertices[2][1];
-// 		inner_pyramid[i].vertices[1][1][2] = pyramid[i].vertices[2][2] - 21.21;
-// 		inner_pyramid[i].vertices[1][2][0] = pyramid[i].vertices[2][0];
-// 		inner_pyramid[i].vertices[1][2][1] = pyramid[i].vertices[2][1] - 20.0;
-// 		inner_pyramid[i].vertices[1][2][2] = pyramid[i].vertices[2][2] - 14.14;
-
-// 		inner_pyramid[i].vertices[2][0][0] = pyramid[i].vertices[3][0];
-// 		inner_pyramid[i].vertices[2][0][1] = pyramid[i].vertices[3][1];
-// 		inner_pyramid[i].vertices[2][0][2] = pyramid[i].vertices[3][2];
-// 		inner_pyramid[i].vertices[2][1][0] = pyramid[i].vertices[3][0] - 12.245;
-// 		inner_pyramid[i].vertices[2][1][1] = pyramid[i].vertices[3][1];
-// 		inner_pyramid[i].vertices[2][1][2] = pyramid[i].vertices[3][2] + 21.21;
-// 		inner_pyramid[i].vertices[2][2][0] = pyramid[i].vertices[3][0] - 12.245;
-// 		inner_pyramid[i].vertices[2][2][1] = pyramid[i].vertices[3][1] - 20.0;
-// 		inner_pyramid[i].vertices[2][2][2] = pyramid[i].vertices[3][2] + 7.07;
-
-// 		inner_pyramid[i].vertices[3][0][0] = inner_pyramid[i].vertices[0][2][0];
-// 		inner_pyramid[i].vertices[3][0][1] = inner_pyramid[i].vertices[0][2][1];
-// 		inner_pyramid[i].vertices[3][0][2] = inner_pyramid[i].vertices[0][2][2];
-// 		inner_pyramid[i].vertices[3][1][0] = inner_pyramid[i].vertices[1][2][0];
-// 		inner_pyramid[i].vertices[3][1][1] = inner_pyramid[i].vertices[1][2][1];
-// 		inner_pyramid[i].vertices[3][1][2] = inner_pyramid[i].vertices[1][2][2];
-// 		inner_pyramid[i].vertices[3][2][0] = inner_pyramid[i].vertices[2][2][0];
-// 		inner_pyramid[i].vertices[3][2][1] = inner_pyramid[i].vertices[2][2][1];
-// 		inner_pyramid[i].vertices[3][2][2] = inner_pyramid[i].vertices[2][2][2];
-
-// 		glColor3f(1.0,0.0,0.0);
-// 		triangle(inner_pyramid[i].vertices[0][0],inner_pyramid[i].vertices[0][1],inner_pyramid[i].vertices[0][2]);
-// 		glColor3f(0.0,0.0,1.0);
-// 		triangle(inner_pyramid[i].vertices[1][0],inner_pyramid[i].vertices[1][1],inner_pyramid[i].vertices[1][2]);
-// 		glColor3f(1.0,1.0,0.0);
-// 		triangle(inner_pyramid[i].vertices[2][0],inner_pyramid[i].vertices[2][1],inner_pyramid[i].vertices[2][2]);
-// 		glColor3f(0.0,1.0,0.0);
-// 		triangle(inner_pyramid[i].vertices[3][0],inner_pyramid[i].vertices[3][1],inner_pyramid[i].vertices[3][2]);
-// 	}
-// }
-
 static GLfloat theta[] = {0.0,0.0,0.0};
 static GLint axis = 2;
 
