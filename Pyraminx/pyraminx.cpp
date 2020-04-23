@@ -6,6 +6,7 @@
 GLfloat v[4][3] = {{0.0,45.0,0.0},{-12.245,25.0,7.07},{12.245,25.0,7.07},{0.0,25.0,-14.14}};
 GLfloat colors[4][3] = {{1.0,0.0,0.0}, {0.0,0.0,1.0}, {0.0,1.0,0.0}, {1.0,1.0,0.0}};
 int count =0;
+float anglex=0, angley=0, CamDist = 50;
 
 class pyraminx{
 	public:
@@ -275,9 +276,14 @@ int flag_display = 0;
 void mydisplay(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-    glRotatef(theta[0],1.0,0.0,0.0);
-    glRotatef(theta[1],0.0,1.0,0.0);
-    glRotatef(theta[2],0.0,0.0,1.0);
+	float ex,ey,ez;
+	ex = CamDist*sin(angley);
+	ey = CamDist*sin(anglex);
+	ez = CamDist*cos(anglex)*cos(angley);
+	gluLookAt(ex,ey,ez, 0,0,0, 0,1,0);
+    // glRotatef(theta[0],1.0,0.0,0.0);
+    // glRotatef(theta[1],0.0,1.0,0.0);
+    // glRotatef(theta[2],0.0,0.0,1.0);
     draw_pyraminx();
 	glFlush();
 	glutSwapBuffers();
@@ -292,34 +298,61 @@ void display(void){
 		flag_display == 1;
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     	glLoadIdentity();
-    	glRotatef(theta[0],1.0,0.0,0.0);
-    	glRotatef(theta[1],0.0,1.0,0.0);
-    	glRotatef(theta[2],0.0,0.0,1.0);
+		float ex,ey,ez;
+		ex = CamDist*sin(angley);
+		ey = CamDist*sin(anglex);
+		ez = CamDist*cos(anglex)*cos(angley);
+		gluLookAt(ex,ey,ez, 0,0,0, 0,1,0);
+    	// glRotatef(theta[0],1.0,0.0,0.0);
+    	// glRotatef(theta[1],0.0,1.0,0.0);
+    	// glRotatef(theta[2],0.0,0.0,1.0);
     	tetrahedron();
 		glFlush();
 		glutSwapBuffers();
 	}
 }
 
-void mouse(int btn, int state, int x, int y){
-    if(btn==GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-        axis = 0;
-    if(btn==GLUT_MIDDLE_BUTTON && state == GLUT_DOWN)
-        axis = 2;
-    if(btn==GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
-        axis = 1;
-    theta[axis] += 22.5;
-    printf("Axis: %d\n",axis);
+// void mouse(int btn, int state, int x, int y){
+//     if(btn==GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+//         axis = 0;
+//     if(btn==GLUT_MIDDLE_BUTTON && state == GLUT_DOWN)
+//         axis = 2;
+//     if(btn==GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
+//         axis = 1;
+//     theta[axis] += 22.5;
+//     printf("Axis: %d\n",axis);
 
-	if( theta[axis] > 360.0 )
-        theta[axis] -= 360.0;
-    printf("theta[axis]: %f\n",theta[axis]);
+// 	if( theta[axis] > 360.0 )
+//         theta[axis] -= 360.0;
+//     printf("theta[axis]: %f\n",theta[axis]);
+// 	mydisplay();
+// }
+
+void keys(unsigned char key, int x, int y)
+{
+	switch(key){
+	case 'A':
+	case 'a':
+		angley -= 0.05;
+		break;
+
+	case 'd':
+	case 'D':
+		angley += 0.05;
+		break;
+
+	case 'w':
+	case 'W':
+		anglex += 0.05;
+		break;
+
+	case 's':
+	case 'S':
+		anglex -=0.05;
+		break;
+	}
 	mydisplay();
 }
-
-// void keys(unsigned char key, int x, int y)
-// {
-// }
 
 void myReshape(int w, int h){
 	int window_height = h;
@@ -328,9 +361,9 @@ void myReshape(int w, int h){
 	glMatrixMode(GL_PROJECTION); 
 	glLoadIdentity();
 	if(w<=h)
-		glOrtho(-50.0,50.0*(GLfloat)h/(GLfloat)w,-50.0*(GLfloat)h/(GLfloat)w, 50.0,-50.0,50.0);
+		glOrtho(-100.0,100.0*(GLfloat)h/(GLfloat)w,-100.0*(GLfloat)h/(GLfloat)w, 100.0,-100.0,100.0);
 	else
-		glOrtho(-50.0*(GLfloat)w/(GLfloat)h, 50.0*(GLfloat)w/(GLfloat)h,-50.0,50.0,-50.0,50.0);
+		glOrtho(-100.0*(GLfloat)w/(GLfloat)h, 100.0*(GLfloat)w/(GLfloat)h,-100.0,100.0,-100.0,100.0);
 	glMatrixMode(GL_MODELVIEW);
 }
 
@@ -342,8 +375,8 @@ int  main(int argc, char **argv)
     glutCreateWindow("colorcube");
     glutReshapeFunc(myReshape);
     glutDisplayFunc(display);
-    glutMouseFunc(mouse);
-    // glutKeyboardFunc(keys);
+    // glutMouseFunc(mouse);
+    glutKeyboardFunc(keys);
     glEnable(GL_DEPTH_TEST);
     glutMainLoop();
     return 0;
