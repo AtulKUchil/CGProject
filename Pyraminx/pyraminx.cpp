@@ -19,11 +19,30 @@ class inner_triangle{
 };
 
 inner_triangle inner_pyramid[4];
-
 pyraminx pyramid[10];
+int color[10][4]={{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3}};
+int inner_pyramid_color[4][4] = {{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3}};
 
 void triangle(GLfloat *a, GLfloat *b,GLfloat*c){
 	glBegin(GL_POLYGON);
+	glVertex3fv(a);
+	glVertex3fv(b);
+	glVertex3fv(c);
+	glEnd();
+	
+	
+	glLineWidth(2.0);
+	glBegin(GL_LINE_LOOP);
+	glColor3f(0.0,0.0,0.0);
+	glVertex3fv(a);
+	glVertex3fv(b);
+	glVertex3fv(c);
+	glEnd();
+}
+
+void triangle1(GLfloat *a, GLfloat *b,GLfloat*c, int color_value){
+	glBegin(GL_POLYGON);
+	glColor3fv(colors[color_value]);
 	glVertex3fv(a);
 	glVertex3fv(b);
 	glVertex3fv(c);
@@ -245,26 +264,372 @@ void tetrahedron(){
 	count = 0;
 }
 
+void pyraminx_operation(char keypressed, int value){
+	GLfloat tempw[3][3], tempx, tempy, tempz;
+
+	if(value == 1){
+		if(keypressed == 'r'){
+			int temp_color = color[0][0];
+			color[0][0] = color[0][2];
+			color[0][2] = color[0][1];
+			color[0][1] = temp_color;
+
+			// tempx = pyramid[0].vertices[1][0];
+			// tempy = pyramid[0].vertices[1][1];
+			// tempz = pyramid[0].vertices[1][2];
+			// pyramid[0].vertices[1][0] = pyramid[0].vertices[2][0];
+			// pyramid[0].vertices[1][1] = pyramid[0].vertices[2][1];
+			// pyramid[0].vertices[1][2] = pyramid[0].vertices[2][2];
+			// pyramid[0].vertices[2][0] = pyramid[0].vertices[3][0];
+			// pyramid[0].vertices[2][1] = pyramid[0].vertices[3][1];
+			// pyramid[0].vertices[2][2] = pyramid[0].vertices[3][2];
+			// pyramid[0].vertices[3][0] = tempx;
+			// pyramid[0].vertices[3][1] = tempy;
+			// pyramid[0].vertices[3][2] = tempz;
+		}
+		if(keypressed == 't'){
+			int temp_color = color[4][0];
+			color[4][0] = color[4][2];
+			color[4][2] = color[4][3];
+			color[4][3] = temp_color;
+
+			// tempx = pyramid[4].vertices[0][0];
+			// tempy = pyramid[4].vertices[0][1];
+			// tempz = pyramid[4].vertices[0][2];
+			// pyramid[4].vertices[0][0] = pyramid[4].vertices[2][0];
+			// pyramid[4].vertices[0][1] = pyramid[4].vertices[2][1];
+			// pyramid[4].vertices[0][2] = pyramid[4].vertices[2][2];
+			// pyramid[4].vertices[2][0] = pyramid[4].vertices[3][0];
+			// pyramid[4].vertices[2][1] = pyramid[4].vertices[3][1];
+			// pyramid[4].vertices[2][2] = pyramid[4].vertices[3][2];
+			// pyramid[4].vertices[3][0] = tempx;
+			// pyramid[4].vertices[3][1] = tempy;
+			// pyramid[4].vertices[3][2] = tempz;
+		}
+		if(keypressed == 'y'){
+			int temp_color = color[6][0];
+			color[6][0] = color[6][3];
+			color[6][3] = color[6][1];
+			color[6][1] = temp_color;
+
+			// tempx = pyramid[6].vertices[0][0];
+			// tempy = pyramid[6].vertices[0][1];
+			// tempz = pyramid[6].vertices[0][2];
+			// pyramid[6].vertices[0][0] = pyramid[6].vertices[3][0];
+			// pyramid[6].vertices[0][1] = pyramid[6].vertices[3][1];
+			// pyramid[6].vertices[0][2] = pyramid[6].vertices[3][2];
+			// pyramid[6].vertices[3][0] = pyramid[6].vertices[1][0];
+			// pyramid[6].vertices[3][1] = pyramid[6].vertices[1][1];
+			// pyramid[6].vertices[3][2] = pyramid[6].vertices[1][2];
+			// pyramid[6].vertices[1][0] = tempx;
+			// pyramid[6].vertices[1][1] = tempy;
+			// pyramid[6].vertices[1][2] = tempz;
+		}
+		if(keypressed == 'u'){
+			int temp_color = color[8][1];
+			color[8][1] = color[8][3];
+			color[8][3] = color[8][2];
+			color[8][2] = temp_color;
+
+			// tempx = pyramid[8].vertices[0][0];
+			// tempy = pyramid[8].vertices[0][1];
+			// tempz = pyramid[8].vertices[0][2];
+			// pyramid[8].vertices[0][0] = pyramid[8].vertices[1][0];
+			// pyramid[8].vertices[0][1] = pyramid[8].vertices[1][1];
+			// pyramid[8].vertices[0][2] = pyramid[8].vertices[1][2];
+			// pyramid[8].vertices[1][0] = pyramid[8].vertices[2][0];
+			// pyramid[8].vertices[1][1] = pyramid[8].vertices[2][1];
+			// pyramid[8].vertices[1][2] = pyramid[8].vertices[2][2];
+			// pyramid[8].vertices[2][0] = tempx;
+			// pyramid[8].vertices[2][1] = tempy;
+			// pyramid[8].vertices[2][2] = tempz;
+		}
+	}
+	if(value == 2){
+		int pyramid_path[3] = {0};
+		if(keypressed == 'f'){
+			pyramid_path[0] = 1;
+			pyramid_path[1] = 2;
+			pyramid_path[2] = 3;
+			int temp_color = color[pyramid_path[0]][0];
+			color[pyramid_path[0]][0] = color[pyramid_path[0]][2];
+			color[pyramid_path[0]][2] = color[pyramid_path[0]][1];
+			color[pyramid_path[0]][1] = temp_color;
+			temp_color = color[pyramid_path[1]][0];
+			color[pyramid_path[1]][0] = color[pyramid_path[1]][2];
+			color[pyramid_path[1]][2] = color[pyramid_path[1]][1];
+			color[pyramid_path[1]][1] = temp_color;
+			temp_color = color[pyramid_path[2]][0];
+			color[pyramid_path[2]][0] = color[pyramid_path[2]][2];
+			color[pyramid_path[2]][2] = color[pyramid_path[2]][1];
+			color[pyramid_path[2]][1] = temp_color;
+
+			int temp_color_update[3];
+			temp_color_update[0] = color[pyramid_path[0]][0];
+			temp_color_update[1] = color[pyramid_path[0]][1];
+			temp_color_update[2] = color[pyramid_path[0]][2];
+			color[pyramid_path[0]][0] = color[pyramid_path[2]][0];
+			color[pyramid_path[0]][1] = color[pyramid_path[2]][1];
+			color[pyramid_path[0]][2] = color[pyramid_path[2]][2];
+			color[pyramid_path[2]][0] = color[pyramid_path[1]][0];
+			color[pyramid_path[2]][1] = color[pyramid_path[1]][1];
+			color[pyramid_path[2]][2] = color[pyramid_path[1]][2];
+			color[pyramid_path[1]][0] = temp_color_update[0];
+			color[pyramid_path[1]][1] = temp_color_update[1];
+			color[pyramid_path[1]][2] = temp_color_update[2];
+
+			int temp_inner_pyramid_color = inner_pyramid_color[0][0];
+			inner_pyramid_color[0][0] = inner_pyramid_color[0][2];
+			inner_pyramid_color[0][2] = inner_pyramid_color[0][1];
+			inner_pyramid_color[0][1] = temp_inner_pyramid_color;
+
+			// tempx = pyramid[pyramid_path[0]].vertices[0][0];
+			// tempy = pyramid[pyramid_path[0]].vertices[0][1];
+			// tempz = pyramid[pyramid_path[0]].vertices[0][2];
+			// for(int i=0;i<value;i++){				
+			// 	pyramid[pyramid_path[i]].vertices[0][0] = pyramid[pyramid_path[i+1]].vertices[0][0];
+			// 	pyramid[pyramid_path[i]].vertices[0][1] = pyramid[pyramid_path[i+1]].vertices[0][1];
+			// 	pyramid[pyramid_path[i]].vertices[0][2] = pyramid[pyramid_path[i+1]].vertices[0][2];
+			// }
+			// pyramid[pyramid_path[2]].vertices[0][0] = tempx;
+			// pyramid[pyramid_path[2]].vertices[0][1] = tempy;
+			// pyramid[pyramid_path[2]].vertices[0][2] = tempz;
+			// tempw[0][0] = pyramid[pyramid_path[0]].vertices[1][0];
+			// tempw[0][1] = pyramid[pyramid_path[0]].vertices[1][1];
+			// tempw[0][2] = pyramid[pyramid_path[0]].vertices[1][2];
+			// tempw[1][0] = pyramid[pyramid_path[0]].vertices[2][0];
+			// tempw[1][1] = pyramid[pyramid_path[0]].vertices[2][1];
+			// tempw[1][2] = pyramid[pyramid_path[0]].vertices[2][2];
+			// tempw[2][0] = pyramid[pyramid_path[0]].vertices[3][0];
+			// tempw[2][1] = pyramid[pyramid_path[0]].vertices[3][1];
+			// tempw[2][2] = pyramid[pyramid_path[0]].vertices[3][2];
+			// for(int i=0;i<value;i++){				
+			// 	pyramid[pyramid_path[i]].vertices[1][0] = pyramid[pyramid_path[i+1]].vertices[2][0];
+			// 	pyramid[pyramid_path[i]].vertices[1][1] = pyramid[pyramid_path[i+1]].vertices[2][1];
+			// 	pyramid[pyramid_path[i]].vertices[1][2] = pyramid[pyramid_path[i+1]].vertices[2][2];
+			// 	pyramid[pyramid_path[i]].vertices[2][0] = pyramid[pyramid_path[i+1]].vertices[3][0];
+			// 	pyramid[pyramid_path[i]].vertices[2][1] = pyramid[pyramid_path[i+1]].vertices[3][1];
+			// 	pyramid[pyramid_path[i]].vertices[2][2] = pyramid[pyramid_path[i+1]].vertices[3][2];
+			// 	pyramid[pyramid_path[i]].vertices[3][0] = pyramid[pyramid_path[i+1]].vertices[1][0];
+			// 	pyramid[pyramid_path[i]].vertices[3][1] = pyramid[pyramid_path[i+1]].vertices[1][1];
+			// 	pyramid[pyramid_path[i]].vertices[3][2] = pyramid[pyramid_path[i+1]].vertices[1][2];
+			// }
+			// pyramid[pyramid_path[value]].vertices[1][0] = tempw[1][0];
+			// pyramid[pyramid_path[value]].vertices[1][1] = tempw[1][1];
+			// pyramid[pyramid_path[value]].vertices[1][2] = tempw[1][2];
+			// pyramid[pyramid_path[value]].vertices[2][0] = tempw[2][0];
+			// pyramid[pyramid_path[value]].vertices[2][1] = tempw[2][1];
+			// pyramid[pyramid_path[value]].vertices[2][2] = tempw[2][2];
+			// pyramid[pyramid_path[value]].vertices[3][0] = tempw[0][0];
+			// pyramid[pyramid_path[value]].vertices[3][1] = tempw[0][1];
+			// pyramid[pyramid_path[value]].vertices[3][2] = tempw[0][2];
+		}
+		if(keypressed == 'g'){
+			pyramid_path[0] = 1;
+			pyramid_path[1] = 5;
+			pyramid_path[2] = 9;
+			int temp_color = color[pyramid_path[0]][0];
+			color[pyramid_path[0]][0] = color[pyramid_path[0]][2];
+			color[pyramid_path[0]][2] = color[pyramid_path[0]][3];
+			color[pyramid_path[0]][3] = temp_color;
+			temp_color = color[pyramid_path[1]][0];
+			color[pyramid_path[1]][0] = color[pyramid_path[1]][2];
+			color[pyramid_path[1]][2] = color[pyramid_path[1]][3];
+			color[pyramid_path[1]][3] = temp_color;
+			temp_color = color[pyramid_path[2]][0];
+			color[pyramid_path[2]][0] = color[pyramid_path[2]][2];
+			color[pyramid_path[2]][2] = color[pyramid_path[2]][3];
+			color[pyramid_path[2]][3] = temp_color;
+
+			int temp_color_update[3];
+			temp_color_update[0] = color[pyramid_path[0]][0];
+			temp_color_update[1] = color[pyramid_path[0]][2];
+			temp_color_update[2] = color[pyramid_path[0]][3];
+			color[pyramid_path[0]][0] = color[pyramid_path[2]][0];
+			color[pyramid_path[0]][2] = color[pyramid_path[2]][2];
+			color[pyramid_path[0]][3] = color[pyramid_path[2]][3];
+			color[pyramid_path[2]][0] = color[pyramid_path[1]][0];
+			color[pyramid_path[2]][2] = color[pyramid_path[1]][2];
+			color[pyramid_path[2]][3] = color[pyramid_path[1]][3];
+			color[pyramid_path[1]][0] = temp_color_update[0];
+			color[pyramid_path[1]][2] = temp_color_update[1];
+			color[pyramid_path[1]][3] = temp_color_update[2];
+
+			int temp_inner_pyramid_color = inner_pyramid_color[1][0];
+			inner_pyramid_color[1][0] = inner_pyramid_color[1][2];
+			inner_pyramid_color[1][2] = inner_pyramid_color[1][3];
+			inner_pyramid_color[1][3] = temp_inner_pyramid_color;
+
+			// tempx = pyramid[pyramid_path[0]].vertices[1][0];
+			// tempy = pyramid[pyramid_path[0]].vertices[1][1];
+			// tempz = pyramid[pyramid_path[0]].vertices[1][2];
+			// for(int i=0;i<value;i++){				
+			// 	pyramid[pyramid_path[i]].vertices[1][0] = pyramid[pyramid_path[i+1]].vertices[1][0];
+			// 	pyramid[pyramid_path[i]].vertices[1][1] = pyramid[pyramid_path[i+1]].vertices[1][1];
+			// 	pyramid[pyramid_path[i]].vertices[1][2] = pyramid[pyramid_path[i+1]].vertices[1][2];
+			// }
+			// pyramid[pyramid_path[2]].vertices[1][0] = tempx;
+			// pyramid[pyramid_path[2]].vertices[1][1] = tempy;
+			// pyramid[pyramid_path[2]].vertices[1][2] = tempz;
+			// tempw[0][0] = pyramid[pyramid_path[0]].vertices[0][0];
+			// tempw[0][1] = pyramid[pyramid_path[0]].vertices[0][1];
+			// tempw[0][2] = pyramid[pyramid_path[0]].vertices[0][2];
+			// tempw[1][0] = pyramid[pyramid_path[0]].vertices[2][0];
+			// tempw[1][1] = pyramid[pyramid_path[0]].vertices[2][1];
+			// tempw[1][2] = pyramid[pyramid_path[0]].vertices[2][2];
+			// tempw[2][0] = pyramid[pyramid_path[0]].vertices[3][0];
+			// tempw[2][1] = pyramid[pyramid_path[0]].vertices[3][1];
+			// tempw[2][2] = pyramid[pyramid_path[0]].vertices[3][2];
+			// for(int i=0;i<value;i++){				
+			// 	pyramid[pyramid_path[i]].vertices[0][0] = pyramid[pyramid_path[i+1]].vertices[2][0];
+			// 	pyramid[pyramid_path[i]].vertices[0][1] = pyramid[pyramid_path[i+1]].vertices[2][1];
+			// 	pyramid[pyramid_path[i]].vertices[0][2] = pyramid[pyramid_path[i+1]].vertices[2][2];
+			// 	pyramid[pyramid_path[i]].vertices[2][0] = pyramid[pyramid_path[i+1]].vertices[3][0];
+			// 	pyramid[pyramid_path[i]].vertices[2][1] = pyramid[pyramid_path[i+1]].vertices[3][1];
+			// 	pyramid[pyramid_path[i]].vertices[2][2] = pyramid[pyramid_path[i+1]].vertices[3][2];
+			// 	pyramid[pyramid_path[i]].vertices[3][0] = pyramid[pyramid_path[i+1]].vertices[0][0];
+			// 	pyramid[pyramid_path[i]].vertices[3][1] = pyramid[pyramid_path[i+1]].vertices[0][1];
+			// 	pyramid[pyramid_path[i]].vertices[3][2] = pyramid[pyramid_path[i+1]].vertices[0][2];
+			// }
+			// pyramid[pyramid_path[value]].vertices[0][0] = tempw[1][0];
+			// pyramid[pyramid_path[value]].vertices[0][1] = tempw[1][1];
+			// pyramid[pyramid_path[value]].vertices[0][2] = tempw[1][2];
+			// pyramid[pyramid_path[value]].vertices[2][0] = tempw[2][0];
+			// pyramid[pyramid_path[value]].vertices[2][1] = tempw[2][1];
+			// pyramid[pyramid_path[value]].vertices[2][2] = tempw[2][2];
+			// pyramid[pyramid_path[value]].vertices[3][0] = tempw[0][0];
+			// pyramid[pyramid_path[value]].vertices[3][1] = tempw[0][1];
+			// pyramid[pyramid_path[value]].vertices[3][2] = tempw[0][2];
+		}
+		if(keypressed == 'h'){
+			pyramid_path[0] = 2;
+			pyramid_path[1] = 7;
+			pyramid_path[2] = 5;
+
+			int temp_color = color[pyramid_path[0]][0];
+			color[pyramid_path[0]][0] = color[pyramid_path[0]][3];
+			color[pyramid_path[0]][3] = color[pyramid_path[0]][1];
+			color[pyramid_path[0]][1] = temp_color;
+			temp_color = color[pyramid_path[1]][0];
+			color[pyramid_path[1]][0] = color[pyramid_path[1]][3];
+			color[pyramid_path[1]][3] = color[pyramid_path[1]][1];
+			color[pyramid_path[1]][1] = temp_color;
+			temp_color = color[pyramid_path[2]][0];
+			color[pyramid_path[2]][0] = color[pyramid_path[2]][3];
+			color[pyramid_path[2]][3] = color[pyramid_path[2]][1];
+			color[pyramid_path[2]][1] = temp_color;
+
+			int temp_color_update[3];
+			temp_color_update[0] = color[pyramid_path[0]][0];
+			temp_color_update[1] = color[pyramid_path[0]][1];
+			temp_color_update[2] = color[pyramid_path[0]][3];
+			color[pyramid_path[0]][0] = color[pyramid_path[2]][0];
+			color[pyramid_path[0]][1] = color[pyramid_path[2]][1];
+			color[pyramid_path[0]][3] = color[pyramid_path[2]][3];
+			color[pyramid_path[2]][0] = color[pyramid_path[1]][0];
+			color[pyramid_path[2]][1] = color[pyramid_path[1]][1];
+			color[pyramid_path[2]][3] = color[pyramid_path[1]][3];
+			color[pyramid_path[1]][0] = temp_color_update[0];
+			color[pyramid_path[1]][1] = temp_color_update[1];
+			color[pyramid_path[1]][3] = temp_color_update[2];
+
+			int temp_inner_pyramid_color = inner_pyramid_color[2][0];
+			inner_pyramid_color[2][0] = inner_pyramid_color[2][3];
+			inner_pyramid_color[2][3] = inner_pyramid_color[2][1];
+			inner_pyramid_color[2][1] = temp_inner_pyramid_color;
+		}
+		if(keypressed == 'j'){
+			pyramid_path[0] = 3;
+			pyramid_path[1] = 9;
+			pyramid_path[2] = 7;
+
+			int temp_color = color[pyramid_path[0]][1];
+			color[pyramid_path[0]][1] = color[pyramid_path[0]][3];
+			color[pyramid_path[0]][3] = color[pyramid_path[0]][2];
+			color[pyramid_path[0]][2] = temp_color;
+			temp_color = color[pyramid_path[1]][1];
+			color[pyramid_path[1]][1] = color[pyramid_path[1]][3];
+			color[pyramid_path[1]][3] = color[pyramid_path[1]][2];
+			color[pyramid_path[1]][2] = temp_color;
+			temp_color = color[pyramid_path[2]][1];
+			color[pyramid_path[2]][1] = color[pyramid_path[2]][3];
+			color[pyramid_path[2]][3] = color[pyramid_path[2]][2];
+			color[pyramid_path[2]][2] = temp_color;
+
+			int temp_color_update[3];
+			temp_color_update[0] = color[pyramid_path[0]][2];
+			temp_color_update[1] = color[pyramid_path[0]][1];
+			temp_color_update[2] = color[pyramid_path[0]][3];
+			color[pyramid_path[0]][2] = color[pyramid_path[2]][2];
+			color[pyramid_path[0]][1] = color[pyramid_path[2]][1];
+			color[pyramid_path[0]][3] = color[pyramid_path[2]][3];
+			color[pyramid_path[2]][2] = color[pyramid_path[1]][2];
+			color[pyramid_path[2]][1] = color[pyramid_path[1]][1];
+			color[pyramid_path[2]][3] = color[pyramid_path[1]][3];
+			color[pyramid_path[1]][2] = temp_color_update[0];
+			color[pyramid_path[1]][1] = temp_color_update[1];
+			color[pyramid_path[1]][3] = temp_color_update[2];
+
+			int temp_inner_pyramid_color = inner_pyramid_color[3][1];
+			inner_pyramid_color[3][1] = inner_pyramid_color[3][3];
+			inner_pyramid_color[3][3] = inner_pyramid_color[3][2];
+			inner_pyramid_color[3][2] = temp_inner_pyramid_color;
+		}
+		// tempx = pyramid[pyramid_path[2]].vertices[0][0];
+		// tempy = pyramid[pyramid_path[2]].vertices[0][1];
+		// tempz = pyramid[pyramid_path[2]].vertices[0][2];
+		// tempw[0][0] = pyramid[pyramid_path[2]].vertices[1][0];
+		// tempw[0][1] = pyramid[pyramid_path[2]].vertices[1][1];
+		// tempw[0][2] = pyramid[pyramid_path[2]].vertices[1][2];
+		// tempw[1][0] = pyramid[pyramid_path[2]].vertices[2][0];
+		// tempw[1][1] = pyramid[pyramid_path[2]].vertices[2][1];
+		// tempw[1][2] = pyramid[pyramid_path[2]].vertices[2][2];
+		// tempw[2][0] = pyramid[pyramid_path[2]].vertices[3][0];
+		// tempw[2][1] = pyramid[pyramid_path[2]].vertices[3][1];
+		// tempw[2][2] = pyramid[pyramid_path[2]].vertices[3][2];
+
+		// for(int i=value;i>=1;i--){
+		// 	pyramid[pyramid_path[i]].vertices[0][0] = pyramid[pyramid_path[i-1]].vertices[0][0];
+		// 	pyramid[pyramid_path[i]].vertices[0][1] = pyramid[pyramid_path[i-1]].vertices[0][1];
+		// 	pyramid[pyramid_path[i]].vertices[0][2] = pyramid[pyramid_path[i-1]].vertices[0][2];
+		// 	pyramid[pyramid_path[i]].vertices[1][0] = pyramid[pyramid_path[i-1]].vertices[1][0];
+		// 	pyramid[pyramid_path[i]].vertices[1][1] = pyramid[pyramid_path[i-1]].vertices[1][1];
+		// 	pyramid[pyramid_path[i]].vertices[1][2] = pyramid[pyramid_path[i-1]].vertices[1][2];
+		// 	pyramid[pyramid_path[i]].vertices[2][0] = pyramid[pyramid_path[i-1]].vertices[2][0];
+		// 	pyramid[pyramid_path[i]].vertices[2][1] = pyramid[pyramid_path[i-1]].vertices[2][1];
+		// 	pyramid[pyramid_path[i]].vertices[2][2] = pyramid[pyramid_path[i-1]].vertices[2][2];
+		// 	pyramid[pyramid_path[i]].vertices[3][0] = pyramid[pyramid_path[i-1]].vertices[3][0];
+		// 	pyramid[pyramid_path[i]].vertices[3][1] = pyramid[pyramid_path[i-1]].vertices[3][1];
+		// 	pyramid[pyramid_path[i]].vertices[3][2] = pyramid[pyramid_path[i-1]].vertices[3][2];
+		// }
+		// pyramid[pyramid_path[0]].vertices[0][0] = tempx;
+		// pyramid[pyramid_path[0]].vertices[0][1] = tempy;
+		// pyramid[pyramid_path[0]].vertices[0][2] = tempz;
+		// pyramid[pyramid_path[0]].vertices[1][0] = tempw[0][0];
+		// pyramid[pyramid_path[0]].vertices[1][1] = tempw[0][1];
+		// pyramid[pyramid_path[0]].vertices[1][2] = tempw[0][2];
+		// pyramid[pyramid_path[0]].vertices[2][0] = tempw[1][0];
+		// pyramid[pyramid_path[0]].vertices[2][1] = tempw[1][1];
+		// pyramid[pyramid_path[0]].vertices[2][2] = tempw[1][2];
+		// pyramid[pyramid_path[0]].vertices[3][0] = tempw[2][0];
+		// pyramid[pyramid_path[0]].vertices[3][1] = tempw[2][1];
+		// pyramid[pyramid_path[0]].vertices[3][2] = tempw[2][2];
+	}
+}
+
+
 void draw_pyraminx(){
 	for(int pyramid_count = 0; pyramid_count < 10; pyramid_count++){
-		glColor3fv(colors[0]);
-		triangle(pyramid[pyramid_count].vertices[0],pyramid[pyramid_count].vertices[1],pyramid[pyramid_count].vertices[2]);
-		glColor3fv(colors[1]);
-		triangle(pyramid[pyramid_count].vertices[0],pyramid[pyramid_count].vertices[2],pyramid[pyramid_count].vertices[3]);
-		glColor3fv(colors[2]);
-		triangle(pyramid[pyramid_count].vertices[0],pyramid[pyramid_count].vertices[3],pyramid[pyramid_count].vertices[1]);
-		glColor3fv(colors[3]);
-		triangle(pyramid[pyramid_count].vertices[1],pyramid[pyramid_count].vertices[2],pyramid[pyramid_count].vertices[3]);
+		triangle1(pyramid[pyramid_count].vertices[0],pyramid[pyramid_count].vertices[1],pyramid[pyramid_count].vertices[2],color[pyramid_count][0]);
+		triangle1(pyramid[pyramid_count].vertices[0],pyramid[pyramid_count].vertices[2],pyramid[pyramid_count].vertices[3],color[pyramid_count][1]);
+		triangle1(pyramid[pyramid_count].vertices[0],pyramid[pyramid_count].vertices[3],pyramid[pyramid_count].vertices[1],color[pyramid_count][2]);
+		triangle1(pyramid[pyramid_count].vertices[1],pyramid[pyramid_count].vertices[2],pyramid[pyramid_count].vertices[3],color[pyramid_count][3]);
 	}
 	for(int inner_pyraminx_count =0; inner_pyraminx_count < 4; inner_pyraminx_count++){
-		glColor3fv(colors[0]);
-		triangle(inner_pyramid[inner_pyraminx_count].vertices[0][0],inner_pyramid[inner_pyraminx_count].vertices[0][1],inner_pyramid[inner_pyraminx_count].vertices[0][2]);
-		glColor3fv(colors[1]);
-		triangle(inner_pyramid[inner_pyraminx_count].vertices[1][0],inner_pyramid[inner_pyraminx_count].vertices[1][1],inner_pyramid[inner_pyraminx_count].vertices[1][2]);
-		glColor3fv(colors[2]);
-		triangle(inner_pyramid[inner_pyraminx_count].vertices[2][0],inner_pyramid[inner_pyraminx_count].vertices[2][1],inner_pyramid[inner_pyraminx_count].vertices[2][2]);
-		glColor3fv(colors[3]);
-		triangle(inner_pyramid[inner_pyraminx_count].vertices[3][0],inner_pyramid[inner_pyraminx_count].vertices[3][1],inner_pyramid[inner_pyraminx_count].vertices[3][2]);
+		triangle1(inner_pyramid[inner_pyraminx_count].vertices[0][0],inner_pyramid[inner_pyraminx_count].vertices[0][1],inner_pyramid[inner_pyraminx_count].vertices[0][2],inner_pyramid_color[inner_pyraminx_count][0]);
+		triangle1(inner_pyramid[inner_pyraminx_count].vertices[1][0],inner_pyramid[inner_pyraminx_count].vertices[1][1],inner_pyramid[inner_pyraminx_count].vertices[1][2],inner_pyramid_color[inner_pyraminx_count][1]);
+		triangle1(inner_pyramid[inner_pyraminx_count].vertices[2][0],inner_pyramid[inner_pyraminx_count].vertices[2][1],inner_pyramid[inner_pyraminx_count].vertices[2][2],inner_pyramid_color[inner_pyraminx_count][2]);
+		triangle1(inner_pyramid[inner_pyraminx_count].vertices[3][0],inner_pyramid[inner_pyraminx_count].vertices[3][1],inner_pyramid[inner_pyraminx_count].vertices[3][2],inner_pyramid_color[inner_pyraminx_count][3]);
 	}
 }
 
@@ -273,7 +638,7 @@ static GLint axis = 2;
 int flag_display = 0;
 
 
-void mydisplay(void){
+void mydisplay(char keypressed, int value){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 	float ex,ey,ez;
@@ -281,9 +646,7 @@ void mydisplay(void){
 	ey = CamDist*sin(anglex);
 	ez = CamDist*cos(anglex)*cos(angley);
 	gluLookAt(ex,ey,ez, 0,0,0, 0,1,0);
-    // glRotatef(theta[0],1.0,0.0,0.0);
-    // glRotatef(theta[1],0.0,1.0,0.0);
-    // glRotatef(theta[2],0.0,0.0,1.0);
+	pyraminx_operation(keypressed, value);
     draw_pyraminx();
 	glFlush();
 	glutSwapBuffers();
@@ -292,7 +655,7 @@ void mydisplay(void){
 
 void display(void){
 	if(flag_display == 1){
-		mydisplay();
+		mydisplay('z',10);
 	}
 	else{
 		flag_display == 1;
@@ -303,9 +666,6 @@ void display(void){
 		ey = CamDist*sin(anglex);
 		ez = CamDist*cos(anglex)*cos(angley);
 		gluLookAt(ex,ey,ez, 0,0,0, 0,1,0);
-    	// glRotatef(theta[0],1.0,0.0,0.0);
-    	// glRotatef(theta[1],0.0,1.0,0.0);
-    	// glRotatef(theta[2],0.0,0.0,1.0);
     	tetrahedron();
 		glFlush();
 		glutSwapBuffers();
@@ -330,6 +690,8 @@ void display(void){
 
 void keys(unsigned char key, int x, int y)
 {
+	char keypressed = 'z';
+	int value = 10;
 	switch(key){
 	case 'A':
 	case 'a':
@@ -351,7 +713,44 @@ void keys(unsigned char key, int x, int y)
 		anglex -=0.05;
 		break;
 	}
-	mydisplay();
+
+	if(key == 'r'){
+		keypressed = 'r';
+		value = 1;
+	}
+	else if(key == 't'){
+		keypressed = 't';
+		value = 1;
+	}
+	else if(key == 'y'){
+		keypressed = 'y';
+		value = 1;
+	}
+	else if(key == 'u'){
+		keypressed = 'u';
+		value = 1;
+	}
+	else if(key == 'f'){
+		keypressed = 'f';
+		value = 2;
+	}
+	else if(key == 'g'){
+		keypressed = 'g';
+		value = 2;
+	}
+	else if(key == 'h'){
+		keypressed = 'h';
+		value = 2;
+	}
+	else if(key == 'j'){
+		keypressed = 'j';
+		value = 2;
+	}
+	else{
+		keypressed = 'z';
+		value = 10;
+	}
+	mydisplay(keypressed, value);
 }
 
 void myReshape(int w, int h){
