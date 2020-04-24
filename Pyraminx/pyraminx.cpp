@@ -265,84 +265,30 @@ void tetrahedron(){
 }
 
 void pyraminx_operation(char keypressed, int value){
-	GLfloat tempw[3][3], tempx, tempy, tempz;
-
 	if(value == 1){
 		if(keypressed == 'r'){
 			int temp_color = color[0][0];
 			color[0][0] = color[0][2];
 			color[0][2] = color[0][1];
 			color[0][1] = temp_color;
-
-			// tempx = pyramid[0].vertices[1][0];
-			// tempy = pyramid[0].vertices[1][1];
-			// tempz = pyramid[0].vertices[1][2];
-			// pyramid[0].vertices[1][0] = pyramid[0].vertices[2][0];
-			// pyramid[0].vertices[1][1] = pyramid[0].vertices[2][1];
-			// pyramid[0].vertices[1][2] = pyramid[0].vertices[2][2];
-			// pyramid[0].vertices[2][0] = pyramid[0].vertices[3][0];
-			// pyramid[0].vertices[2][1] = pyramid[0].vertices[3][1];
-			// pyramid[0].vertices[2][2] = pyramid[0].vertices[3][2];
-			// pyramid[0].vertices[3][0] = tempx;
-			// pyramid[0].vertices[3][1] = tempy;
-			// pyramid[0].vertices[3][2] = tempz;
 		}
 		if(keypressed == 't'){
 			int temp_color = color[4][0];
 			color[4][0] = color[4][2];
 			color[4][2] = color[4][3];
 			color[4][3] = temp_color;
-
-			// tempx = pyramid[4].vertices[0][0];
-			// tempy = pyramid[4].vertices[0][1];
-			// tempz = pyramid[4].vertices[0][2];
-			// pyramid[4].vertices[0][0] = pyramid[4].vertices[2][0];
-			// pyramid[4].vertices[0][1] = pyramid[4].vertices[2][1];
-			// pyramid[4].vertices[0][2] = pyramid[4].vertices[2][2];
-			// pyramid[4].vertices[2][0] = pyramid[4].vertices[3][0];
-			// pyramid[4].vertices[2][1] = pyramid[4].vertices[3][1];
-			// pyramid[4].vertices[2][2] = pyramid[4].vertices[3][2];
-			// pyramid[4].vertices[3][0] = tempx;
-			// pyramid[4].vertices[3][1] = tempy;
-			// pyramid[4].vertices[3][2] = tempz;
 		}
 		if(keypressed == 'y'){
 			int temp_color = color[6][0];
 			color[6][0] = color[6][3];
 			color[6][3] = color[6][1];
 			color[6][1] = temp_color;
-
-			// tempx = pyramid[6].vertices[0][0];
-			// tempy = pyramid[6].vertices[0][1];
-			// tempz = pyramid[6].vertices[0][2];
-			// pyramid[6].vertices[0][0] = pyramid[6].vertices[3][0];
-			// pyramid[6].vertices[0][1] = pyramid[6].vertices[3][1];
-			// pyramid[6].vertices[0][2] = pyramid[6].vertices[3][2];
-			// pyramid[6].vertices[3][0] = pyramid[6].vertices[1][0];
-			// pyramid[6].vertices[3][1] = pyramid[6].vertices[1][1];
-			// pyramid[6].vertices[3][2] = pyramid[6].vertices[1][2];
-			// pyramid[6].vertices[1][0] = tempx;
-			// pyramid[6].vertices[1][1] = tempy;
-			// pyramid[6].vertices[1][2] = tempz;
 		}
 		if(keypressed == 'u'){
 			int temp_color = color[8][1];
 			color[8][1] = color[8][3];
 			color[8][3] = color[8][2];
 			color[8][2] = temp_color;
-
-			// tempx = pyramid[8].vertices[0][0];
-			// tempy = pyramid[8].vertices[0][1];
-			// tempz = pyramid[8].vertices[0][2];
-			// pyramid[8].vertices[0][0] = pyramid[8].vertices[1][0];
-			// pyramid[8].vertices[0][1] = pyramid[8].vertices[1][1];
-			// pyramid[8].vertices[0][2] = pyramid[8].vertices[1][2];
-			// pyramid[8].vertices[1][0] = pyramid[8].vertices[2][0];
-			// pyramid[8].vertices[1][1] = pyramid[8].vertices[2][1];
-			// pyramid[8].vertices[1][2] = pyramid[8].vertices[2][2];
-			// pyramid[8].vertices[2][0] = tempx;
-			// pyramid[8].vertices[2][1] = tempy;
-			// pyramid[8].vertices[2][2] = tempz;
 		}
 	}
 	if(value == 2){
@@ -351,18 +297,13 @@ void pyraminx_operation(char keypressed, int value){
 			pyramid_path[0] = 1;
 			pyramid_path[1] = 2;
 			pyramid_path[2] = 3;
-			int temp_color = color[pyramid_path[0]][0];
-			color[pyramid_path[0]][0] = color[pyramid_path[0]][2];
-			color[pyramid_path[0]][2] = color[pyramid_path[0]][1];
-			color[pyramid_path[0]][1] = temp_color;
-			temp_color = color[pyramid_path[1]][0];
-			color[pyramid_path[1]][0] = color[pyramid_path[1]][2];
-			color[pyramid_path[1]][2] = color[pyramid_path[1]][1];
-			color[pyramid_path[1]][1] = temp_color;
-			temp_color = color[pyramid_path[2]][0];
-			color[pyramid_path[2]][0] = color[pyramid_path[2]][2];
-			color[pyramid_path[2]][2] = color[pyramid_path[2]][1];
-			color[pyramid_path[2]][1] = temp_color;
+
+			for(int i=0;i<=value;i++){
+				int temp_color = color[pyramid_path[i]][0];
+				color[pyramid_path[i]][0] = color[pyramid_path[i]][2];
+				color[pyramid_path[i]][2] = color[pyramid_path[i]][1];
+				color[pyramid_path[i]][1] = temp_color;
+			}
 
 			int temp_color_update[3];
 			temp_color_update[0] = color[pyramid_path[0]][0];
@@ -382,64 +323,18 @@ void pyraminx_operation(char keypressed, int value){
 			inner_pyramid_color[0][0] = inner_pyramid_color[0][2];
 			inner_pyramid_color[0][2] = inner_pyramid_color[0][1];
 			inner_pyramid_color[0][1] = temp_inner_pyramid_color;
-
-			// tempx = pyramid[pyramid_path[0]].vertices[0][0];
-			// tempy = pyramid[pyramid_path[0]].vertices[0][1];
-			// tempz = pyramid[pyramid_path[0]].vertices[0][2];
-			// for(int i=0;i<value;i++){				
-			// 	pyramid[pyramid_path[i]].vertices[0][0] = pyramid[pyramid_path[i+1]].vertices[0][0];
-			// 	pyramid[pyramid_path[i]].vertices[0][1] = pyramid[pyramid_path[i+1]].vertices[0][1];
-			// 	pyramid[pyramid_path[i]].vertices[0][2] = pyramid[pyramid_path[i+1]].vertices[0][2];
-			// }
-			// pyramid[pyramid_path[2]].vertices[0][0] = tempx;
-			// pyramid[pyramid_path[2]].vertices[0][1] = tempy;
-			// pyramid[pyramid_path[2]].vertices[0][2] = tempz;
-			// tempw[0][0] = pyramid[pyramid_path[0]].vertices[1][0];
-			// tempw[0][1] = pyramid[pyramid_path[0]].vertices[1][1];
-			// tempw[0][2] = pyramid[pyramid_path[0]].vertices[1][2];
-			// tempw[1][0] = pyramid[pyramid_path[0]].vertices[2][0];
-			// tempw[1][1] = pyramid[pyramid_path[0]].vertices[2][1];
-			// tempw[1][2] = pyramid[pyramid_path[0]].vertices[2][2];
-			// tempw[2][0] = pyramid[pyramid_path[0]].vertices[3][0];
-			// tempw[2][1] = pyramid[pyramid_path[0]].vertices[3][1];
-			// tempw[2][2] = pyramid[pyramid_path[0]].vertices[3][2];
-			// for(int i=0;i<value;i++){				
-			// 	pyramid[pyramid_path[i]].vertices[1][0] = pyramid[pyramid_path[i+1]].vertices[2][0];
-			// 	pyramid[pyramid_path[i]].vertices[1][1] = pyramid[pyramid_path[i+1]].vertices[2][1];
-			// 	pyramid[pyramid_path[i]].vertices[1][2] = pyramid[pyramid_path[i+1]].vertices[2][2];
-			// 	pyramid[pyramid_path[i]].vertices[2][0] = pyramid[pyramid_path[i+1]].vertices[3][0];
-			// 	pyramid[pyramid_path[i]].vertices[2][1] = pyramid[pyramid_path[i+1]].vertices[3][1];
-			// 	pyramid[pyramid_path[i]].vertices[2][2] = pyramid[pyramid_path[i+1]].vertices[3][2];
-			// 	pyramid[pyramid_path[i]].vertices[3][0] = pyramid[pyramid_path[i+1]].vertices[1][0];
-			// 	pyramid[pyramid_path[i]].vertices[3][1] = pyramid[pyramid_path[i+1]].vertices[1][1];
-			// 	pyramid[pyramid_path[i]].vertices[3][2] = pyramid[pyramid_path[i+1]].vertices[1][2];
-			// }
-			// pyramid[pyramid_path[value]].vertices[1][0] = tempw[1][0];
-			// pyramid[pyramid_path[value]].vertices[1][1] = tempw[1][1];
-			// pyramid[pyramid_path[value]].vertices[1][2] = tempw[1][2];
-			// pyramid[pyramid_path[value]].vertices[2][0] = tempw[2][0];
-			// pyramid[pyramid_path[value]].vertices[2][1] = tempw[2][1];
-			// pyramid[pyramid_path[value]].vertices[2][2] = tempw[2][2];
-			// pyramid[pyramid_path[value]].vertices[3][0] = tempw[0][0];
-			// pyramid[pyramid_path[value]].vertices[3][1] = tempw[0][1];
-			// pyramid[pyramid_path[value]].vertices[3][2] = tempw[0][2];
 		}
 		if(keypressed == 'g'){
 			pyramid_path[0] = 1;
 			pyramid_path[1] = 5;
 			pyramid_path[2] = 9;
-			int temp_color = color[pyramid_path[0]][0];
-			color[pyramid_path[0]][0] = color[pyramid_path[0]][2];
-			color[pyramid_path[0]][2] = color[pyramid_path[0]][3];
-			color[pyramid_path[0]][3] = temp_color;
-			temp_color = color[pyramid_path[1]][0];
-			color[pyramid_path[1]][0] = color[pyramid_path[1]][2];
-			color[pyramid_path[1]][2] = color[pyramid_path[1]][3];
-			color[pyramid_path[1]][3] = temp_color;
-			temp_color = color[pyramid_path[2]][0];
-			color[pyramid_path[2]][0] = color[pyramid_path[2]][2];
-			color[pyramid_path[2]][2] = color[pyramid_path[2]][3];
-			color[pyramid_path[2]][3] = temp_color;
+
+			for(int i=0;i<=value;i++){
+				int temp_color = color[pyramid_path[i]][0];
+				color[pyramid_path[i]][0] = color[pyramid_path[i]][2];
+				color[pyramid_path[i]][2] = color[pyramid_path[i]][3];
+				color[pyramid_path[i]][3] = temp_color;
+			}
 
 			int temp_color_update[3];
 			temp_color_update[0] = color[pyramid_path[0]][0];
@@ -459,65 +354,18 @@ void pyraminx_operation(char keypressed, int value){
 			inner_pyramid_color[1][0] = inner_pyramid_color[1][2];
 			inner_pyramid_color[1][2] = inner_pyramid_color[1][3];
 			inner_pyramid_color[1][3] = temp_inner_pyramid_color;
-
-			// tempx = pyramid[pyramid_path[0]].vertices[1][0];
-			// tempy = pyramid[pyramid_path[0]].vertices[1][1];
-			// tempz = pyramid[pyramid_path[0]].vertices[1][2];
-			// for(int i=0;i<value;i++){				
-			// 	pyramid[pyramid_path[i]].vertices[1][0] = pyramid[pyramid_path[i+1]].vertices[1][0];
-			// 	pyramid[pyramid_path[i]].vertices[1][1] = pyramid[pyramid_path[i+1]].vertices[1][1];
-			// 	pyramid[pyramid_path[i]].vertices[1][2] = pyramid[pyramid_path[i+1]].vertices[1][2];
-			// }
-			// pyramid[pyramid_path[2]].vertices[1][0] = tempx;
-			// pyramid[pyramid_path[2]].vertices[1][1] = tempy;
-			// pyramid[pyramid_path[2]].vertices[1][2] = tempz;
-			// tempw[0][0] = pyramid[pyramid_path[0]].vertices[0][0];
-			// tempw[0][1] = pyramid[pyramid_path[0]].vertices[0][1];
-			// tempw[0][2] = pyramid[pyramid_path[0]].vertices[0][2];
-			// tempw[1][0] = pyramid[pyramid_path[0]].vertices[2][0];
-			// tempw[1][1] = pyramid[pyramid_path[0]].vertices[2][1];
-			// tempw[1][2] = pyramid[pyramid_path[0]].vertices[2][2];
-			// tempw[2][0] = pyramid[pyramid_path[0]].vertices[3][0];
-			// tempw[2][1] = pyramid[pyramid_path[0]].vertices[3][1];
-			// tempw[2][2] = pyramid[pyramid_path[0]].vertices[3][2];
-			// for(int i=0;i<value;i++){				
-			// 	pyramid[pyramid_path[i]].vertices[0][0] = pyramid[pyramid_path[i+1]].vertices[2][0];
-			// 	pyramid[pyramid_path[i]].vertices[0][1] = pyramid[pyramid_path[i+1]].vertices[2][1];
-			// 	pyramid[pyramid_path[i]].vertices[0][2] = pyramid[pyramid_path[i+1]].vertices[2][2];
-			// 	pyramid[pyramid_path[i]].vertices[2][0] = pyramid[pyramid_path[i+1]].vertices[3][0];
-			// 	pyramid[pyramid_path[i]].vertices[2][1] = pyramid[pyramid_path[i+1]].vertices[3][1];
-			// 	pyramid[pyramid_path[i]].vertices[2][2] = pyramid[pyramid_path[i+1]].vertices[3][2];
-			// 	pyramid[pyramid_path[i]].vertices[3][0] = pyramid[pyramid_path[i+1]].vertices[0][0];
-			// 	pyramid[pyramid_path[i]].vertices[3][1] = pyramid[pyramid_path[i+1]].vertices[0][1];
-			// 	pyramid[pyramid_path[i]].vertices[3][2] = pyramid[pyramid_path[i+1]].vertices[0][2];
-			// }
-			// pyramid[pyramid_path[value]].vertices[0][0] = tempw[1][0];
-			// pyramid[pyramid_path[value]].vertices[0][1] = tempw[1][1];
-			// pyramid[pyramid_path[value]].vertices[0][2] = tempw[1][2];
-			// pyramid[pyramid_path[value]].vertices[2][0] = tempw[2][0];
-			// pyramid[pyramid_path[value]].vertices[2][1] = tempw[2][1];
-			// pyramid[pyramid_path[value]].vertices[2][2] = tempw[2][2];
-			// pyramid[pyramid_path[value]].vertices[3][0] = tempw[0][0];
-			// pyramid[pyramid_path[value]].vertices[3][1] = tempw[0][1];
-			// pyramid[pyramid_path[value]].vertices[3][2] = tempw[0][2];
 		}
 		if(keypressed == 'h'){
 			pyramid_path[0] = 2;
 			pyramid_path[1] = 7;
 			pyramid_path[2] = 5;
 
-			int temp_color = color[pyramid_path[0]][0];
-			color[pyramid_path[0]][0] = color[pyramid_path[0]][3];
-			color[pyramid_path[0]][3] = color[pyramid_path[0]][1];
-			color[pyramid_path[0]][1] = temp_color;
-			temp_color = color[pyramid_path[1]][0];
-			color[pyramid_path[1]][0] = color[pyramid_path[1]][3];
-			color[pyramid_path[1]][3] = color[pyramid_path[1]][1];
-			color[pyramid_path[1]][1] = temp_color;
-			temp_color = color[pyramid_path[2]][0];
-			color[pyramid_path[2]][0] = color[pyramid_path[2]][3];
-			color[pyramid_path[2]][3] = color[pyramid_path[2]][1];
-			color[pyramid_path[2]][1] = temp_color;
+			for(int i=0;i<=value;i++){
+				int temp_color = color[pyramid_path[i]][0];
+				color[pyramid_path[i]][0] = color[pyramid_path[i]][3];
+				color[pyramid_path[i]][3] = color[pyramid_path[i]][1];
+				color[pyramid_path[i]][1] = temp_color;
+			}
 
 			int temp_color_update[3];
 			temp_color_update[0] = color[pyramid_path[0]][0];
@@ -543,18 +391,12 @@ void pyraminx_operation(char keypressed, int value){
 			pyramid_path[1] = 9;
 			pyramid_path[2] = 7;
 
-			int temp_color = color[pyramid_path[0]][1];
-			color[pyramid_path[0]][1] = color[pyramid_path[0]][3];
-			color[pyramid_path[0]][3] = color[pyramid_path[0]][2];
-			color[pyramid_path[0]][2] = temp_color;
-			temp_color = color[pyramid_path[1]][1];
-			color[pyramid_path[1]][1] = color[pyramid_path[1]][3];
-			color[pyramid_path[1]][3] = color[pyramid_path[1]][2];
-			color[pyramid_path[1]][2] = temp_color;
-			temp_color = color[pyramid_path[2]][1];
-			color[pyramid_path[2]][1] = color[pyramid_path[2]][3];
-			color[pyramid_path[2]][3] = color[pyramid_path[2]][2];
-			color[pyramid_path[2]][2] = temp_color;
+			for(int i=0;i<=value;i++){
+				int temp_color = color[pyramid_path[i]][1];
+				color[pyramid_path[i]][1] = color[pyramid_path[i]][3];
+				color[pyramid_path[i]][3] = color[pyramid_path[i]][2];
+				color[pyramid_path[i]][2] = temp_color;
+			}
 
 			int temp_color_update[3];
 			temp_color_update[0] = color[pyramid_path[0]][2];
@@ -575,45 +417,318 @@ void pyraminx_operation(char keypressed, int value){
 			inner_pyramid_color[3][3] = inner_pyramid_color[3][2];
 			inner_pyramid_color[3][2] = temp_inner_pyramid_color;
 		}
-		// tempx = pyramid[pyramid_path[2]].vertices[0][0];
-		// tempy = pyramid[pyramid_path[2]].vertices[0][1];
-		// tempz = pyramid[pyramid_path[2]].vertices[0][2];
-		// tempw[0][0] = pyramid[pyramid_path[2]].vertices[1][0];
-		// tempw[0][1] = pyramid[pyramid_path[2]].vertices[1][1];
-		// tempw[0][2] = pyramid[pyramid_path[2]].vertices[1][2];
-		// tempw[1][0] = pyramid[pyramid_path[2]].vertices[2][0];
-		// tempw[1][1] = pyramid[pyramid_path[2]].vertices[2][1];
-		// tempw[1][2] = pyramid[pyramid_path[2]].vertices[2][2];
-		// tempw[2][0] = pyramid[pyramid_path[2]].vertices[3][0];
-		// tempw[2][1] = pyramid[pyramid_path[2]].vertices[3][1];
-		// tempw[2][2] = pyramid[pyramid_path[2]].vertices[3][2];
+	}
+	if(value == 5){
+		int pyramid_path[6] = {0};
+		int inner_pyramid_path[3] = {0};
+		if(keypressed == 'v'){
+			pyramid_path[0] = 4;
+			pyramid_path[1] = 5;
+			pyramid_path[2] = 6;
+			pyramid_path[3] = 7;
+			pyramid_path[4] = 8;
+			pyramid_path[5] = 9;
+			
+			for(int i=0;i<=value;i++){
+				int temp_color = color[pyramid_path[i]][0];
+				color[pyramid_path[i]][0] = color[pyramid_path[i]][2];
+				color[pyramid_path[i]][2] = color[pyramid_path[i]][1];
+				color[pyramid_path[i]][1] = temp_color;
+			}
 
-		// for(int i=value;i>=1;i--){
-		// 	pyramid[pyramid_path[i]].vertices[0][0] = pyramid[pyramid_path[i-1]].vertices[0][0];
-		// 	pyramid[pyramid_path[i]].vertices[0][1] = pyramid[pyramid_path[i-1]].vertices[0][1];
-		// 	pyramid[pyramid_path[i]].vertices[0][2] = pyramid[pyramid_path[i-1]].vertices[0][2];
-		// 	pyramid[pyramid_path[i]].vertices[1][0] = pyramid[pyramid_path[i-1]].vertices[1][0];
-		// 	pyramid[pyramid_path[i]].vertices[1][1] = pyramid[pyramid_path[i-1]].vertices[1][1];
-		// 	pyramid[pyramid_path[i]].vertices[1][2] = pyramid[pyramid_path[i-1]].vertices[1][2];
-		// 	pyramid[pyramid_path[i]].vertices[2][0] = pyramid[pyramid_path[i-1]].vertices[2][0];
-		// 	pyramid[pyramid_path[i]].vertices[2][1] = pyramid[pyramid_path[i-1]].vertices[2][1];
-		// 	pyramid[pyramid_path[i]].vertices[2][2] = pyramid[pyramid_path[i-1]].vertices[2][2];
-		// 	pyramid[pyramid_path[i]].vertices[3][0] = pyramid[pyramid_path[i-1]].vertices[3][0];
-		// 	pyramid[pyramid_path[i]].vertices[3][1] = pyramid[pyramid_path[i-1]].vertices[3][1];
-		// 	pyramid[pyramid_path[i]].vertices[3][2] = pyramid[pyramid_path[i-1]].vertices[3][2];
-		// }
-		// pyramid[pyramid_path[0]].vertices[0][0] = tempx;
-		// pyramid[pyramid_path[0]].vertices[0][1] = tempy;
-		// pyramid[pyramid_path[0]].vertices[0][2] = tempz;
-		// pyramid[pyramid_path[0]].vertices[1][0] = tempw[0][0];
-		// pyramid[pyramid_path[0]].vertices[1][1] = tempw[0][1];
-		// pyramid[pyramid_path[0]].vertices[1][2] = tempw[0][2];
-		// pyramid[pyramid_path[0]].vertices[2][0] = tempw[1][0];
-		// pyramid[pyramid_path[0]].vertices[2][1] = tempw[1][1];
-		// pyramid[pyramid_path[0]].vertices[2][2] = tempw[1][2];
-		// pyramid[pyramid_path[0]].vertices[3][0] = tempw[2][0];
-		// pyramid[pyramid_path[0]].vertices[3][1] = tempw[2][1];
-		// pyramid[pyramid_path[0]].vertices[3][2] = tempw[2][2];
+			int temp_color_update[3];
+			temp_color_update[0] = color[pyramid_path[0]][0];
+			temp_color_update[1] = color[pyramid_path[0]][1];
+			temp_color_update[2] = color[pyramid_path[0]][2];
+			int temp_color_botface = color[pyramid_path[0]][3];
+			color[pyramid_path[0]][0] = color[pyramid_path[4]][0];
+			color[pyramid_path[0]][1] = color[pyramid_path[4]][1];
+			color[pyramid_path[0]][2] = color[pyramid_path[4]][2];
+			color[pyramid_path[0]][3] = color[pyramid_path[4]][3];
+			color[pyramid_path[4]][0] = color[pyramid_path[2]][0];
+			color[pyramid_path[4]][1] = color[pyramid_path[2]][1];
+			color[pyramid_path[4]][2] = color[pyramid_path[2]][2];
+			color[pyramid_path[4]][3] = color[pyramid_path[2]][3];
+			color[pyramid_path[2]][0] = temp_color_update[0];
+			color[pyramid_path[2]][1] = temp_color_update[1];
+			color[pyramid_path[2]][2] = temp_color_update[2];
+			color[pyramid_path[2]][3] = temp_color_botface;
+			temp_color_update[0] = color[pyramid_path[1]][0];
+			temp_color_update[1] = color[pyramid_path[1]][1];
+			temp_color_update[2] = color[pyramid_path[1]][2];
+			temp_color_botface = color[pyramid_path[1]][3];
+			color[pyramid_path[1]][0] = color[pyramid_path[5]][0];
+			color[pyramid_path[1]][1] = color[pyramid_path[5]][1];
+			color[pyramid_path[1]][2] = color[pyramid_path[5]][2];
+			color[pyramid_path[1]][3] = color[pyramid_path[5]][3];
+			color[pyramid_path[5]][0] = color[pyramid_path[3]][0];
+			color[pyramid_path[5]][1] = color[pyramid_path[3]][1];
+			color[pyramid_path[5]][2] = color[pyramid_path[3]][2];
+			color[pyramid_path[5]][3] = color[pyramid_path[3]][3];
+			color[pyramid_path[3]][0] = temp_color_update[0];
+			color[pyramid_path[3]][1] = temp_color_update[1];
+			color[pyramid_path[3]][2] = temp_color_update[2];
+			color[pyramid_path[3]][3] = temp_color_botface;
+
+			inner_pyramid_path[0] = 1;
+			inner_pyramid_path[1] = 2;
+			inner_pyramid_path[2] = 3;
+
+			for(int i=0;i<3;i++){
+				int temp_color = inner_pyramid_color[inner_pyramid_path[i]][0];
+				inner_pyramid_color[inner_pyramid_path[i]][0] = inner_pyramid_color[inner_pyramid_path[i]][2];
+				inner_pyramid_color[inner_pyramid_path[i]][2] = inner_pyramid_color[inner_pyramid_path[i]][1];
+				inner_pyramid_color[inner_pyramid_path[i]][1] = temp_color;
+			}
+
+			temp_color_update[0] = inner_pyramid_color[inner_pyramid_path[0]][0];
+			temp_color_update[1] = inner_pyramid_color[inner_pyramid_path[0]][1];
+			temp_color_update[2] = inner_pyramid_color[inner_pyramid_path[0]][2];
+			temp_color_botface = inner_pyramid_color[inner_pyramid_path[0]][3];
+			inner_pyramid_color[inner_pyramid_path[0]][0] = inner_pyramid_color[inner_pyramid_path[2]][0];
+			inner_pyramid_color[inner_pyramid_path[0]][1] = inner_pyramid_color[inner_pyramid_path[2]][1];
+			inner_pyramid_color[inner_pyramid_path[0]][2] = inner_pyramid_color[inner_pyramid_path[2]][2];
+			inner_pyramid_color[inner_pyramid_path[0]][3] = inner_pyramid_color[inner_pyramid_path[2]][3];
+			inner_pyramid_color[inner_pyramid_path[2]][0] = inner_pyramid_color[inner_pyramid_path[1]][0];
+			inner_pyramid_color[inner_pyramid_path[2]][1] = inner_pyramid_color[inner_pyramid_path[1]][1];
+			inner_pyramid_color[inner_pyramid_path[2]][2] = inner_pyramid_color[inner_pyramid_path[1]][2];
+			inner_pyramid_color[inner_pyramid_path[2]][3] = inner_pyramid_color[inner_pyramid_path[1]][3];
+			inner_pyramid_color[inner_pyramid_path[1]][0] = temp_color_update[0];
+			inner_pyramid_color[inner_pyramid_path[1]][1] = temp_color_update[1];
+			inner_pyramid_color[inner_pyramid_path[1]][2] = temp_color_update[2];
+			inner_pyramid_color[inner_pyramid_path[1]][3] = temp_color_botface;
+		}
+		if(keypressed == 'b'){
+			pyramid_path[0] = 0;
+			pyramid_path[1] = 2;
+			pyramid_path[2] = 6;
+			pyramid_path[3] = 7;
+			pyramid_path[4] = 8;
+			pyramid_path[5] = 3;
+			
+			for(int i=0;i<=value;i++){
+				int temp_color = color[pyramid_path[i]][0];
+				color[pyramid_path[i]][0] = color[pyramid_path[i]][2];
+				color[pyramid_path[i]][2] = color[pyramid_path[i]][3];
+				color[pyramid_path[i]][3] = temp_color;
+			}
+
+			int temp_color_update[3];
+			temp_color_update[0] = color[pyramid_path[0]][0];
+			temp_color_update[1] = color[pyramid_path[0]][2];
+			temp_color_update[2] = color[pyramid_path[0]][3];
+			int temp_color_botface = color[pyramid_path[0]][1];
+			color[pyramid_path[0]][0] = color[pyramid_path[4]][0];
+			color[pyramid_path[0]][2] = color[pyramid_path[4]][2];
+			color[pyramid_path[0]][3] = color[pyramid_path[4]][3];
+			color[pyramid_path[0]][1] = color[pyramid_path[4]][1];
+			color[pyramid_path[4]][0] = color[pyramid_path[2]][0];
+			color[pyramid_path[4]][2] = color[pyramid_path[2]][2];
+			color[pyramid_path[4]][3] = color[pyramid_path[2]][3];
+			color[pyramid_path[4]][1] = color[pyramid_path[2]][1];
+			color[pyramid_path[2]][0] = temp_color_update[0];
+			color[pyramid_path[2]][2] = temp_color_update[1];
+			color[pyramid_path[2]][3] = temp_color_update[2];
+			color[pyramid_path[2]][1] = temp_color_botface;
+			temp_color_update[0] = color[pyramid_path[1]][0];
+			temp_color_update[1] = color[pyramid_path[1]][2];
+			temp_color_update[2] = color[pyramid_path[1]][3];
+			temp_color_botface = color[pyramid_path[1]][1];
+			color[pyramid_path[1]][0] = color[pyramid_path[5]][0];
+			color[pyramid_path[1]][2] = color[pyramid_path[5]][2];
+			color[pyramid_path[1]][3] = color[pyramid_path[5]][3];
+			color[pyramid_path[1]][1] = color[pyramid_path[5]][1];
+			color[pyramid_path[5]][0] = color[pyramid_path[3]][0];
+			color[pyramid_path[5]][2] = color[pyramid_path[3]][2];
+			color[pyramid_path[5]][3] = color[pyramid_path[3]][3];
+			color[pyramid_path[5]][1] = color[pyramid_path[3]][1];
+			color[pyramid_path[3]][0] = temp_color_update[0];
+			color[pyramid_path[3]][2] = temp_color_update[1];
+			color[pyramid_path[3]][3] = temp_color_update[2];
+			color[pyramid_path[3]][1] = temp_color_botface;
+
+			inner_pyramid_path[0] = 0;
+			inner_pyramid_path[1] = 2;
+			inner_pyramid_path[2] = 3;
+
+			for(int i=0;i<3;i++){
+				int temp_color = inner_pyramid_color[inner_pyramid_path[i]][0];
+				inner_pyramid_color[inner_pyramid_path[i]][0] = inner_pyramid_color[inner_pyramid_path[i]][2];
+				inner_pyramid_color[inner_pyramid_path[i]][2] = inner_pyramid_color[inner_pyramid_path[i]][3];
+				inner_pyramid_color[inner_pyramid_path[i]][3] = temp_color;
+			}
+
+			temp_color_update[0] = inner_pyramid_color[inner_pyramid_path[0]][0];
+			temp_color_update[1] = inner_pyramid_color[inner_pyramid_path[0]][2];
+			temp_color_update[2] = inner_pyramid_color[inner_pyramid_path[0]][3];
+			temp_color_botface = inner_pyramid_color[inner_pyramid_path[0]][1];
+			inner_pyramid_color[inner_pyramid_path[0]][0] = inner_pyramid_color[inner_pyramid_path[2]][0];
+			inner_pyramid_color[inner_pyramid_path[0]][2] = inner_pyramid_color[inner_pyramid_path[2]][2];
+			inner_pyramid_color[inner_pyramid_path[0]][3] = inner_pyramid_color[inner_pyramid_path[2]][3];
+			inner_pyramid_color[inner_pyramid_path[0]][1] = inner_pyramid_color[inner_pyramid_path[2]][1];
+			inner_pyramid_color[inner_pyramid_path[2]][0] = inner_pyramid_color[inner_pyramid_path[1]][0];
+			inner_pyramid_color[inner_pyramid_path[2]][2] = inner_pyramid_color[inner_pyramid_path[1]][2];
+			inner_pyramid_color[inner_pyramid_path[2]][3] = inner_pyramid_color[inner_pyramid_path[1]][3];
+			inner_pyramid_color[inner_pyramid_path[2]][1] = inner_pyramid_color[inner_pyramid_path[1]][1];
+			inner_pyramid_color[inner_pyramid_path[1]][0] = temp_color_update[0];
+			inner_pyramid_color[inner_pyramid_path[1]][2] = temp_color_update[1];
+			inner_pyramid_color[inner_pyramid_path[1]][3] = temp_color_update[2];
+			inner_pyramid_color[inner_pyramid_path[1]][1] = temp_color_botface;
+		}
+		if(keypressed == 'n'){
+			pyramid_path[0] = 0;
+			pyramid_path[1] = 3;
+			pyramid_path[2] = 8;
+			pyramid_path[3] = 9;
+			pyramid_path[4] = 4;
+			pyramid_path[5] = 1;
+			
+			for(int i=0;i<=value;i++){
+				int temp_color = color[pyramid_path[i]][0];
+				color[pyramid_path[i]][0] = color[pyramid_path[i]][3];
+				color[pyramid_path[i]][3] = color[pyramid_path[i]][1];
+				color[pyramid_path[i]][1] = temp_color;
+			}
+
+			int temp_color_update[3];
+			temp_color_update[0] = color[pyramid_path[0]][0];
+			temp_color_update[1] = color[pyramid_path[0]][1];
+			temp_color_update[2] = color[pyramid_path[0]][3];
+			int temp_color_botface = color[pyramid_path[0]][2];
+			color[pyramid_path[0]][0] = color[pyramid_path[4]][0];
+			color[pyramid_path[0]][1] = color[pyramid_path[4]][1];
+			color[pyramid_path[0]][3] = color[pyramid_path[4]][3];
+			color[pyramid_path[0]][2] = color[pyramid_path[4]][2];
+			color[pyramid_path[4]][0] = color[pyramid_path[2]][0];
+			color[pyramid_path[4]][1] = color[pyramid_path[2]][1];
+			color[pyramid_path[4]][3] = color[pyramid_path[2]][3];
+			color[pyramid_path[4]][2] = color[pyramid_path[2]][2];
+			color[pyramid_path[2]][0] = temp_color_update[0];
+			color[pyramid_path[2]][1] = temp_color_update[1];
+			color[pyramid_path[2]][3] = temp_color_update[2];
+			color[pyramid_path[2]][2] = temp_color_botface;
+			temp_color_update[0] = color[pyramid_path[1]][0];
+			temp_color_update[1] = color[pyramid_path[1]][1];
+			temp_color_update[2] = color[pyramid_path[1]][3];
+			temp_color_botface = color[pyramid_path[1]][2];
+			color[pyramid_path[1]][0] = color[pyramid_path[5]][0];
+			color[pyramid_path[1]][1] = color[pyramid_path[5]][1];
+			color[pyramid_path[1]][3] = color[pyramid_path[5]][3];
+			color[pyramid_path[1]][2] = color[pyramid_path[5]][2];
+			color[pyramid_path[5]][0] = color[pyramid_path[3]][0];
+			color[pyramid_path[5]][1] = color[pyramid_path[3]][1];
+			color[pyramid_path[5]][3] = color[pyramid_path[3]][3];
+			color[pyramid_path[5]][2] = color[pyramid_path[3]][2];
+			color[pyramid_path[3]][0] = temp_color_update[0];
+			color[pyramid_path[3]][1] = temp_color_update[1];
+			color[pyramid_path[3]][3] = temp_color_update[2];
+			color[pyramid_path[3]][2] = temp_color_botface;
+
+			inner_pyramid_path[0] = 0;
+			inner_pyramid_path[1] = 3;
+			inner_pyramid_path[2] = 1;
+
+			for(int i=0;i<3;i++){
+				int temp_color = inner_pyramid_color[inner_pyramid_path[i]][0];
+				inner_pyramid_color[inner_pyramid_path[i]][0] = inner_pyramid_color[inner_pyramid_path[i]][3];
+				inner_pyramid_color[inner_pyramid_path[i]][3] = inner_pyramid_color[inner_pyramid_path[i]][1];
+				inner_pyramid_color[inner_pyramid_path[i]][1] = temp_color;
+			}
+
+			temp_color_update[0] = inner_pyramid_color[inner_pyramid_path[0]][0];
+			temp_color_update[1] = inner_pyramid_color[inner_pyramid_path[0]][1];
+			temp_color_update[2] = inner_pyramid_color[inner_pyramid_path[0]][3];
+			temp_color_botface = inner_pyramid_color[inner_pyramid_path[0]][2];
+			inner_pyramid_color[inner_pyramid_path[0]][0] = inner_pyramid_color[inner_pyramid_path[2]][0];
+			inner_pyramid_color[inner_pyramid_path[0]][1] = inner_pyramid_color[inner_pyramid_path[2]][1];
+			inner_pyramid_color[inner_pyramid_path[0]][3] = inner_pyramid_color[inner_pyramid_path[2]][3];
+			inner_pyramid_color[inner_pyramid_path[0]][2] = inner_pyramid_color[inner_pyramid_path[2]][2];
+			inner_pyramid_color[inner_pyramid_path[2]][0] = inner_pyramid_color[inner_pyramid_path[1]][0];
+			inner_pyramid_color[inner_pyramid_path[2]][1] = inner_pyramid_color[inner_pyramid_path[1]][1];
+			inner_pyramid_color[inner_pyramid_path[2]][3] = inner_pyramid_color[inner_pyramid_path[1]][3];
+			inner_pyramid_color[inner_pyramid_path[2]][2] = inner_pyramid_color[inner_pyramid_path[1]][2];
+			inner_pyramid_color[inner_pyramid_path[1]][0] = temp_color_update[0];
+			inner_pyramid_color[inner_pyramid_path[1]][1] = temp_color_update[1];
+			inner_pyramid_color[inner_pyramid_path[1]][3] = temp_color_update[2];
+			inner_pyramid_color[inner_pyramid_path[1]][2] = temp_color_botface;
+		}
+		if(keypressed == 'm'){
+			pyramid_path[0] = 0;
+			pyramid_path[1] = 1;
+			pyramid_path[2] = 4;
+			pyramid_path[3] = 5;
+			pyramid_path[4] = 6;
+			pyramid_path[5] = 2;
+			
+			for(int i=0;i<=value;i++){
+				int temp_color = color[pyramid_path[i]][1];
+				color[pyramid_path[i]][1] = color[pyramid_path[i]][3];
+				color[pyramid_path[i]][3] = color[pyramid_path[i]][2];
+				color[pyramid_path[i]][2] = temp_color;
+			}
+
+			int temp_color_update[3];
+			temp_color_update[0] = color[pyramid_path[0]][1];
+			temp_color_update[1] = color[pyramid_path[0]][2];
+			temp_color_update[2] = color[pyramid_path[0]][3];
+			int temp_color_botface = color[pyramid_path[0]][0];
+			color[pyramid_path[0]][1] = color[pyramid_path[4]][1];
+			color[pyramid_path[0]][2] = color[pyramid_path[4]][2];
+			color[pyramid_path[0]][3] = color[pyramid_path[4]][3];
+			color[pyramid_path[0]][0] = color[pyramid_path[4]][0];
+			color[pyramid_path[4]][1] = color[pyramid_path[2]][1];
+			color[pyramid_path[4]][2] = color[pyramid_path[2]][2];
+			color[pyramid_path[4]][3] = color[pyramid_path[2]][3];
+			color[pyramid_path[4]][0] = color[pyramid_path[2]][0];
+			color[pyramid_path[2]][1] = temp_color_update[0];
+			color[pyramid_path[2]][2] = temp_color_update[1];
+			color[pyramid_path[2]][3] = temp_color_update[2];
+			color[pyramid_path[2]][0] = temp_color_botface;
+			temp_color_update[0] = color[pyramid_path[1]][1];
+			temp_color_update[1] = color[pyramid_path[1]][2];
+			temp_color_update[2] = color[pyramid_path[1]][3];
+			temp_color_botface = color[pyramid_path[1]][0];
+			color[pyramid_path[1]][1] = color[pyramid_path[5]][1];
+			color[pyramid_path[1]][2] = color[pyramid_path[5]][2];
+			color[pyramid_path[1]][3] = color[pyramid_path[5]][3];
+			color[pyramid_path[1]][0] = color[pyramid_path[5]][0];
+			color[pyramid_path[5]][1] = color[pyramid_path[3]][1];
+			color[pyramid_path[5]][2] = color[pyramid_path[3]][2];
+			color[pyramid_path[5]][3] = color[pyramid_path[3]][3];
+			color[pyramid_path[5]][0] = color[pyramid_path[3]][0];
+			color[pyramid_path[3]][1] = temp_color_update[0];
+			color[pyramid_path[3]][2] = temp_color_update[1];
+			color[pyramid_path[3]][3] = temp_color_update[2];
+			color[pyramid_path[3]][0] = temp_color_botface;
+
+			inner_pyramid_path[0] = 0;
+			inner_pyramid_path[1] = 1;
+			inner_pyramid_path[2] = 2;
+
+			for(int i=0;i<3;i++){
+				int temp_color = inner_pyramid_color[inner_pyramid_path[i]][1];
+				inner_pyramid_color[inner_pyramid_path[i]][1] = inner_pyramid_color[inner_pyramid_path[i]][3];
+				inner_pyramid_color[inner_pyramid_path[i]][3] = inner_pyramid_color[inner_pyramid_path[i]][2];
+				inner_pyramid_color[inner_pyramid_path[i]][2] = temp_color;
+			}
+
+			temp_color_update[0] = inner_pyramid_color[inner_pyramid_path[0]][1];
+			temp_color_update[1] = inner_pyramid_color[inner_pyramid_path[0]][2];
+			temp_color_update[2] = inner_pyramid_color[inner_pyramid_path[0]][3];
+			temp_color_botface = inner_pyramid_color[inner_pyramid_path[0]][0];
+			inner_pyramid_color[inner_pyramid_path[0]][1] = inner_pyramid_color[inner_pyramid_path[2]][1];
+			inner_pyramid_color[inner_pyramid_path[0]][2] = inner_pyramid_color[inner_pyramid_path[2]][2];
+			inner_pyramid_color[inner_pyramid_path[0]][3] = inner_pyramid_color[inner_pyramid_path[2]][3];
+			inner_pyramid_color[inner_pyramid_path[0]][0] = inner_pyramid_color[inner_pyramid_path[2]][0];
+			inner_pyramid_color[inner_pyramid_path[2]][1] = inner_pyramid_color[inner_pyramid_path[1]][1];
+			inner_pyramid_color[inner_pyramid_path[2]][2] = inner_pyramid_color[inner_pyramid_path[1]][2];
+			inner_pyramid_color[inner_pyramid_path[2]][3] = inner_pyramid_color[inner_pyramid_path[1]][3];
+			inner_pyramid_color[inner_pyramid_path[2]][0] = inner_pyramid_color[inner_pyramid_path[1]][0];
+			inner_pyramid_color[inner_pyramid_path[1]][1] = temp_color_update[0];
+			inner_pyramid_color[inner_pyramid_path[1]][2] = temp_color_update[1];
+			inner_pyramid_color[inner_pyramid_path[1]][3] = temp_color_update[2];
+			inner_pyramid_color[inner_pyramid_path[1]][0] = temp_color_botface;
+		}
 	}
 }
 
@@ -746,6 +861,22 @@ void keys(unsigned char key, int x, int y)
 		keypressed = 'j';
 		value = 2;
 	}
+	else if(key == 'v'){
+		keypressed = 'v';
+		value = 5;
+	}
+	else if(key == 'b'){
+		keypressed = 'b';
+		value = 5;
+	}
+	else if(key == 'n'){
+		keypressed = 'n';
+		value = 5;
+	}
+	else if(key == 'm'){
+		keypressed = 'm';
+		value = 5;
+	}
 	else{
 		keypressed = 'z';
 		value = 10;
@@ -771,7 +902,7 @@ int  main(int argc, char **argv)
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(500, 500);
-    glutCreateWindow("colorcube");
+    glutCreateWindow("Pyraminx");
     glutReshapeFunc(myReshape);
     glutDisplayFunc(display);
     // glutMouseFunc(mouse);
