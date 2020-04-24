@@ -773,7 +773,7 @@ void display(void){
 		mydisplay('z',10);
 	}
 	else{
-		flag_display == 1;
+		flag_display = 1;
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     	glLoadIdentity();
 		float ex,ey,ez;
