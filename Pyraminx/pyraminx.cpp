@@ -846,7 +846,6 @@ int flag_display = 0;
 void mydisplay(char keypressed, int value){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-	printf("Mydisplay\n");
 	float ex,ey,ez;
 	ex = CamDist*sin(angley);
 	ey = CamDist*sin(anglex);
@@ -866,7 +865,6 @@ void display(void){
 		mydisplay('z',10);
 	}
 	else{
-		printf("Display\n");
 		flag_display = 1;
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     	glLoadIdentity();
@@ -982,7 +980,6 @@ void keys(unsigned char key, int x, int y)
 void myReshape(int w, int h){
 	int window_height = h;
 	int window_width = w;
-	printf("Reshape\n");
 	glViewport(0,0,w,h);
 	glMatrixMode(GL_PROJECTION); 
 	glLoadIdentity();
