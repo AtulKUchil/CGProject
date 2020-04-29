@@ -20,8 +20,15 @@ class inner_triangle{
 
 inner_triangle inner_pyramid[4];
 pyraminx pyramid[10];
+
+
 int color[10][4]={{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3}};
 int inner_pyramid_color[4][4] = {{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3}};
+int highlight_pyramid[6] = {-1};
+int highlight_inner_pyramid[3] = {-1};
+GLfloat highlight_color = 0.0;
+int highlight_pyramid_count = 0;
+GLfloat linewidth = 2.0;
 
 void triangle(GLfloat *a, GLfloat *b,GLfloat*c){
 	glBegin(GL_POLYGON);
@@ -31,7 +38,7 @@ void triangle(GLfloat *a, GLfloat *b,GLfloat*c){
 	glEnd();
 	
 	
-	glLineWidth(2.0);
+	glLineWidth(linewidth);
 	glBegin(GL_LINE_LOOP);
 	glColor3f(0.0,0.0,0.0);
 	glVertex3fv(a);
@@ -49,9 +56,9 @@ void triangle1(GLfloat *a, GLfloat *b,GLfloat*c, int color_value){
 	glEnd();
 	
 	
-	glLineWidth(2.0);
+	glLineWidth(linewidth);
 	glBegin(GL_LINE_LOOP);
-	glColor3f(0.0,0.0,0.0);
+	glColor3f(highlight_color,highlight_color,highlight_color);
 	glVertex3fv(a);
 	glVertex3fv(b);
 	glVertex3fv(c);
@@ -267,24 +274,28 @@ void tetrahedron(){
 void pyraminx_operation(char keypressed, int value){
 	if(value == 1){
 		if(keypressed == 'r'){
+			highlight_pyramid[0] = 0;
 			int temp_color = color[0][0];
 			color[0][0] = color[0][2];
 			color[0][2] = color[0][1];
 			color[0][1] = temp_color;
 		}
 		if(keypressed == 't'){
+			highlight_pyramid[0] = 4;
 			int temp_color = color[4][0];
 			color[4][0] = color[4][2];
 			color[4][2] = color[4][3];
 			color[4][3] = temp_color;
 		}
 		if(keypressed == 'y'){
+			highlight_pyramid[0] = 6;
 			int temp_color = color[6][0];
 			color[6][0] = color[6][3];
 			color[6][3] = color[6][1];
 			color[6][1] = temp_color;
 		}
 		if(keypressed == 'u'){
+			highlight_pyramid[0] = 8;
 			int temp_color = color[8][1];
 			color[8][1] = color[8][3];
 			color[8][3] = color[8][2];
@@ -294,6 +305,9 @@ void pyraminx_operation(char keypressed, int value){
 	if(value == 2){
 		int pyramid_path[3] = {0};
 		if(keypressed == 'f'){
+			highlight_pyramid[0] = 1;
+			highlight_pyramid[1] = 2;
+			highlight_pyramid[2] = 3;
 			pyramid_path[0] = 1;
 			pyramid_path[1] = 2;
 			pyramid_path[2] = 3;
@@ -318,13 +332,17 @@ void pyraminx_operation(char keypressed, int value){
 			color[pyramid_path[1]][0] = temp_color_update[0];
 			color[pyramid_path[1]][1] = temp_color_update[1];
 			color[pyramid_path[1]][2] = temp_color_update[2];
-
+			
+			highlight_inner_pyramid[0] = 0;
 			int temp_inner_pyramid_color = inner_pyramid_color[0][0];
 			inner_pyramid_color[0][0] = inner_pyramid_color[0][2];
 			inner_pyramid_color[0][2] = inner_pyramid_color[0][1];
 			inner_pyramid_color[0][1] = temp_inner_pyramid_color;
 		}
 		if(keypressed == 'g'){
+			highlight_pyramid[0] = 1;
+			highlight_pyramid[1] = 5;
+			highlight_pyramid[2] = 9;
 			pyramid_path[0] = 1;
 			pyramid_path[1] = 5;
 			pyramid_path[2] = 9;
@@ -350,12 +368,16 @@ void pyraminx_operation(char keypressed, int value){
 			color[pyramid_path[1]][2] = temp_color_update[1];
 			color[pyramid_path[1]][3] = temp_color_update[2];
 
+			highlight_inner_pyramid[0] = 1;
 			int temp_inner_pyramid_color = inner_pyramid_color[1][0];
 			inner_pyramid_color[1][0] = inner_pyramid_color[1][2];
 			inner_pyramid_color[1][2] = inner_pyramid_color[1][3];
 			inner_pyramid_color[1][3] = temp_inner_pyramid_color;
 		}
 		if(keypressed == 'h'){
+			highlight_pyramid[0] = 2;
+			highlight_pyramid[1] = 5;
+			highlight_pyramid[2] = 7;
 			pyramid_path[0] = 2;
 			pyramid_path[1] = 7;
 			pyramid_path[2] = 5;
@@ -381,12 +403,16 @@ void pyraminx_operation(char keypressed, int value){
 			color[pyramid_path[1]][1] = temp_color_update[1];
 			color[pyramid_path[1]][3] = temp_color_update[2];
 
+			highlight_inner_pyramid[0] = 2;
 			int temp_inner_pyramid_color = inner_pyramid_color[2][0];
 			inner_pyramid_color[2][0] = inner_pyramid_color[2][3];
 			inner_pyramid_color[2][3] = inner_pyramid_color[2][1];
 			inner_pyramid_color[2][1] = temp_inner_pyramid_color;
 		}
 		if(keypressed == 'j'){
+			highlight_pyramid[0] = 3;
+			highlight_pyramid[1] = 7;
+			highlight_pyramid[2] = 9;
 			pyramid_path[0] = 3;
 			pyramid_path[1] = 9;
 			pyramid_path[2] = 7;
@@ -412,6 +438,7 @@ void pyraminx_operation(char keypressed, int value){
 			color[pyramid_path[1]][1] = temp_color_update[1];
 			color[pyramid_path[1]][3] = temp_color_update[2];
 
+			highlight_inner_pyramid[0] = 3;
 			int temp_inner_pyramid_color = inner_pyramid_color[3][1];
 			inner_pyramid_color[3][1] = inner_pyramid_color[3][3];
 			inner_pyramid_color[3][3] = inner_pyramid_color[3][2];
@@ -422,6 +449,12 @@ void pyraminx_operation(char keypressed, int value){
 		int pyramid_path[6] = {0};
 		int inner_pyramid_path[3] = {0};
 		if(keypressed == 'v'){
+			highlight_pyramid[0] = 4;
+			highlight_pyramid[1] = 5;
+			highlight_pyramid[2] = 6;
+			highlight_pyramid[3] = 7;
+			highlight_pyramid[4] = 8;
+			highlight_pyramid[5] = 9;
 			pyramid_path[0] = 4;
 			pyramid_path[1] = 5;
 			pyramid_path[2] = 6;
@@ -470,6 +503,9 @@ void pyraminx_operation(char keypressed, int value){
 			color[pyramid_path[3]][2] = temp_color_update[2];
 			color[pyramid_path[3]][3] = temp_color_botface;
 
+			highlight_inner_pyramid[0] = 1;
+			highlight_inner_pyramid[1] = 2;
+			highlight_inner_pyramid[2] = 3;
 			inner_pyramid_path[0] = 1;
 			inner_pyramid_path[1] = 2;
 			inner_pyramid_path[2] = 3;
@@ -499,6 +535,12 @@ void pyraminx_operation(char keypressed, int value){
 			inner_pyramid_color[inner_pyramid_path[1]][3] = temp_color_botface;
 		}
 		if(keypressed == 'b'){
+			highlight_pyramid[0] = 0;
+			highlight_pyramid[1] = 2;
+			highlight_pyramid[2] = 3;
+			highlight_pyramid[3] = 6;
+			highlight_pyramid[4] = 7;
+			highlight_pyramid[5] = 8;
 			pyramid_path[0] = 0;
 			pyramid_path[1] = 2;
 			pyramid_path[2] = 6;
@@ -547,6 +589,9 @@ void pyraminx_operation(char keypressed, int value){
 			color[pyramid_path[3]][3] = temp_color_update[2];
 			color[pyramid_path[3]][1] = temp_color_botface;
 
+			highlight_inner_pyramid[0] = 0;
+			highlight_inner_pyramid[1] = 2;
+			highlight_inner_pyramid[2] = 3;
 			inner_pyramid_path[0] = 0;
 			inner_pyramid_path[1] = 2;
 			inner_pyramid_path[2] = 3;
@@ -576,6 +621,12 @@ void pyraminx_operation(char keypressed, int value){
 			inner_pyramid_color[inner_pyramid_path[1]][1] = temp_color_botface;
 		}
 		if(keypressed == 'n'){
+			highlight_pyramid[0] = 0;
+			highlight_pyramid[1] = 1;
+			highlight_pyramid[2] = 3;
+			highlight_pyramid[3] = 4;
+			highlight_pyramid[4] = 8;
+			highlight_pyramid[5] = 9;
 			pyramid_path[0] = 0;
 			pyramid_path[1] = 3;
 			pyramid_path[2] = 8;
@@ -624,6 +675,9 @@ void pyraminx_operation(char keypressed, int value){
 			color[pyramid_path[3]][3] = temp_color_update[2];
 			color[pyramid_path[3]][2] = temp_color_botface;
 
+			highlight_inner_pyramid[0] = 0;
+			highlight_inner_pyramid[1] = 1;
+			highlight_inner_pyramid[2] = 3;
 			inner_pyramid_path[0] = 0;
 			inner_pyramid_path[1] = 3;
 			inner_pyramid_path[2] = 1;
@@ -653,6 +707,12 @@ void pyraminx_operation(char keypressed, int value){
 			inner_pyramid_color[inner_pyramid_path[1]][2] = temp_color_botface;
 		}
 		if(keypressed == 'm'){
+			highlight_pyramid[0] = 0;
+			highlight_pyramid[1] = 1;
+			highlight_pyramid[2] = 2;
+			highlight_pyramid[3] = 4;
+			highlight_pyramid[4] = 5;
+			highlight_pyramid[5] = 6;
 			pyramid_path[0] = 0;
 			pyramid_path[1] = 1;
 			pyramid_path[2] = 4;
@@ -701,6 +761,9 @@ void pyraminx_operation(char keypressed, int value){
 			color[pyramid_path[3]][3] = temp_color_update[2];
 			color[pyramid_path[3]][0] = temp_color_botface;
 
+			highlight_inner_pyramid[0] = 0;
+			highlight_inner_pyramid[1] = 1;
+			highlight_inner_pyramid[2] = 2;
 			inner_pyramid_path[0] = 0;
 			inner_pyramid_path[1] = 1;
 			inner_pyramid_path[2] = 2;
@@ -733,29 +796,57 @@ void pyraminx_operation(char keypressed, int value){
 }
 
 
+void init_highlight(){
+	for(int i=0;i<6;i++){
+		highlight_pyramid[i] = -1;
+	}
+	for(int i=0;i<3;i++){
+		highlight_inner_pyramid[i] = -1;
+	}
+	highlight_color = 0.0;
+	highlight_pyramid_count = 0;
+}
+
 void draw_pyraminx(){
 	for(int pyramid_count = 0; pyramid_count < 10; pyramid_count++){
+		if(pyramid_count == highlight_pyramid[highlight_pyramid_count]){
+			highlight_color = 1.0;
+			highlight_pyramid_count++;
+		}
+		else
+		{
+			highlight_color = 0.0;
+		}		
 		triangle1(pyramid[pyramid_count].vertices[0],pyramid[pyramid_count].vertices[1],pyramid[pyramid_count].vertices[2],color[pyramid_count][0]);
 		triangle1(pyramid[pyramid_count].vertices[0],pyramid[pyramid_count].vertices[2],pyramid[pyramid_count].vertices[3],color[pyramid_count][1]);
 		triangle1(pyramid[pyramid_count].vertices[0],pyramid[pyramid_count].vertices[3],pyramid[pyramid_count].vertices[1],color[pyramid_count][2]);
 		triangle1(pyramid[pyramid_count].vertices[1],pyramid[pyramid_count].vertices[2],pyramid[pyramid_count].vertices[3],color[pyramid_count][3]);
 	}
 	for(int inner_pyraminx_count =0; inner_pyraminx_count < 4; inner_pyraminx_count++){
+		if(inner_pyraminx_count == highlight_inner_pyramid[highlight_pyramid_count]){
+			highlight_color = 1.0;
+			highlight_pyramid_count++;
+		}
+		else
+		{	
+			highlight_color = 0.0;
+		}
 		triangle1(inner_pyramid[inner_pyraminx_count].vertices[0][0],inner_pyramid[inner_pyraminx_count].vertices[0][1],inner_pyramid[inner_pyraminx_count].vertices[0][2],inner_pyramid_color[inner_pyraminx_count][0]);
 		triangle1(inner_pyramid[inner_pyraminx_count].vertices[1][0],inner_pyramid[inner_pyraminx_count].vertices[1][1],inner_pyramid[inner_pyraminx_count].vertices[1][2],inner_pyramid_color[inner_pyraminx_count][1]);
 		triangle1(inner_pyramid[inner_pyraminx_count].vertices[2][0],inner_pyramid[inner_pyraminx_count].vertices[2][1],inner_pyramid[inner_pyraminx_count].vertices[2][2],inner_pyramid_color[inner_pyraminx_count][2]);
 		triangle1(inner_pyramid[inner_pyraminx_count].vertices[3][0],inner_pyramid[inner_pyraminx_count].vertices[3][1],inner_pyramid[inner_pyraminx_count].vertices[3][2],inner_pyramid_color[inner_pyraminx_count][3]);
 	}
+	init_highlight();
 }
 
 static GLfloat theta[] = {0.0,0.0,0.0};
 static GLint axis = 2;
 int flag_display = 0;
 
-
 void mydisplay(char keypressed, int value){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
+	printf("Mydisplay\n");
 	float ex,ey,ez;
 	ex = CamDist*sin(angley);
 	ey = CamDist*sin(anglex);
@@ -768,11 +859,14 @@ void mydisplay(char keypressed, int value){
 }
 
 
+
+
 void display(void){
 	if(flag_display == 1){
 		mydisplay('z',10);
 	}
 	else{
+		printf("Display\n");
 		flag_display = 1;
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     	glLoadIdentity();
@@ -881,12 +975,14 @@ void keys(unsigned char key, int x, int y)
 		keypressed = 'z';
 		value = 10;
 	}
+	
 	mydisplay(keypressed, value);
 }
 
 void myReshape(int w, int h){
 	int window_height = h;
 	int window_width = w;
+	printf("Reshape\n");
 	glViewport(0,0,w,h);
 	glMatrixMode(GL_PROJECTION); 
 	glLoadIdentity();
@@ -897,17 +993,19 @@ void myReshape(int w, int h){
 	glMatrixMode(GL_MODELVIEW);
 }
 
+
 int  main(int argc, char **argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(500, 500);
+	glutInitWindowSize(500, 500);
     glutCreateWindow("Pyraminx");
     glutReshapeFunc(myReshape);
     glutDisplayFunc(display);
-    // glutMouseFunc(mouse);
-    glutKeyboardFunc(keys);
+	glutKeyboardFunc(keys);
     glEnable(GL_DEPTH_TEST);
+    // glutMouseFunc(mouse);
+
     glutMainLoop();
     return 0;
 }
