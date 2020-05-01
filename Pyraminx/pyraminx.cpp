@@ -2,11 +2,13 @@
 #include<iostream>
 #include<GL/glut.h>
 #include<math.h>
+#include"pyraminx.h"
 
 GLfloat v[4][3] = {{0.0,45.0,0.0},{-12.245,25.0,7.07},{12.245,25.0,7.07},{0.0,25.0,-14.14}};
 GLfloat colors[4][3] = {{1.0,0.0,0.0}, {0.0,0.0,1.0}, {0.0,1.0,0.0}, {1.0,1.0,0.0}};
 int count = 0;
 float anglex = 0, angley = 0;
+
 
 class pyraminx{
 	public:
@@ -1607,6 +1609,8 @@ void mouse(int btn, int state, int x, int y){
 	mydisplay(keypressed, value);
 }
 
+// GLint win1;
+
 void keys(unsigned char key, int x, int y){
 	char keypressed = 'z';
 	int value = 10;
@@ -1696,7 +1700,10 @@ void keys(unsigned char key, int x, int y){
 		keypressed = 'z';
 		value = 10;
 	}
-	
+	if(key == 'q'){
+		glutDestroyWindow(win1);
+	}
+
 	mydisplay(keypressed, value);
 }
 
@@ -1713,18 +1720,18 @@ void myReshape(int w, int h){
 	glMatrixMode(GL_MODELVIEW);
 }
 
-int  main(int argc, char **argv){
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	// glutInitWindowSize(500, 500);
-    glutCreateWindow("Pyraminx");
-	glutFullScreen();
-    glutReshapeFunc(myReshape);
-    glutDisplayFunc(display);
-	glutPassiveMotionFunc(hover);
-	glutKeyboardFunc(keys);
-	glutMouseFunc(mouse);
-    glEnable(GL_DEPTH_TEST);
-    glutMainLoop();
-    return 0;
-}
+// int  main(int argc, char **argv){
+//     glutInit(&argc, argv);
+//     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+// 	glutInitWindowSize(500, 500);
+//     glutCreateWindow("Pyraminx");
+// 	glutFullScreen();
+//     glutReshapeFunc(myReshape);
+//     glutDisplayFunc(display);
+// 	glutPassiveMotionFunc(hover);
+// 	glutKeyboardFunc(keys);
+// 	glutMouseFunc(mouse);
+//     glEnable(GL_DEPTH_TEST);
+//     glutMainLoop();
+//     return 0;
+// }
