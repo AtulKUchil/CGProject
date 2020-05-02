@@ -33,7 +33,7 @@ void display2(void){
     choose_text();
     string a = "Project By:";
     string b = "Anirudh Sureshram - 1PE16CS020";
-    string c = "Aravindhan V - 1PE17CS026";
+    string c = "Aravindhan Venkataramanan - 1PE17CS026";
     string d = "Atul K Uchil - 1PE17CS029";
     draw_text(70, 15, a.data(),2);
     draw_text(75, 12, b.data(),2);
