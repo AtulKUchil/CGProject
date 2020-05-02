@@ -7,34 +7,40 @@
 
 using namespace std;
 
+// Vertices of the topmost pyramid in the pyraminx.
 GLfloat v[4][3] = {{0.0,45.0,0.0},{-12.245,25.0,7.07},{12.245,25.0,7.07},{0.0,25.0,-14.14}};
+//Colors of all the faces of the pyramid.
 GLfloat colors[4][3] = {{1.0,0.0,0.0}, {0.0,0.0,1.0}, {0.0,1.0,0.0}, {1.0,1.0,0.0}};
 int count = 0;
+// angles for rotating the whole pyraminx.
 float anglex = 0, angley = 0;
 
-
+//Stores all the coordinates of the pyramids.
 class pyraminx{
 	public:
 		GLfloat vertices[4][3] = {0.0};
 };
+pyraminx pyramid[10];
 
+//Stores all the coordinates of the void pyramid or inner-pyramid.
 class inner_triangle{
 	public:
 	GLfloat vertices[4][3][3] = {0};
 };
-
 inner_triangle inner_pyramid[4];
-pyraminx pyramid[10];
 
+//Initializes all color of the pyramids and inner-pyramids.
 int color[10][4]={{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3}};
 int inner_pyramid_color[4][4] = {{0,1,2,3},{0,1,2,3},{0,1,2,3},{0,1,2,3}};
 
+//For highlighting the pyramids.
 int highlight_pyramid[6] = {-1};
 int highlight_inner_pyramid[3] = {-1};
 GLfloat highlight_color = 0.0;
 int highlight_pyramid_count = 0;
 GLfloat linewidth = 2.0;
 
+//Draw triangles and surround them with lines. 
 void triangle(GLfloat *a, GLfloat *b,GLfloat*c){
 	glBegin(GL_POLYGON);
 	glVertex3fv(a);
@@ -52,6 +58,7 @@ void triangle(GLfloat *a, GLfloat *b,GLfloat*c){
 	glEnd();
 }
 
+//Draw triangles and surround them with lines after any operation.
 void triangle1(GLfloat *a, GLfloat *b,GLfloat*c, int color_value){
 	glBegin(GL_POLYGON);
 	glColor3fv(colors[color_value]);
@@ -70,7 +77,9 @@ void triangle1(GLfloat *a, GLfloat *b,GLfloat*c, int color_value){
 	glEnd();
 }
 
+//Used to store all the coordinates of the pyramids and inner-pyramids in the object pyramid and inner_pyramid respectively.
 void tetrahedron(){
+	//Draw first layer.
 	if(count == 0){
 		int i = count;
 		pyramid[0].vertices[0][0] = v[0][0];
@@ -145,6 +154,7 @@ void tetrahedron(){
 		triangle(inner_pyramid[i].vertices[3][0],inner_pyramid[i].vertices[3][1],inner_pyramid[i].vertices[3][2]);
 	}
 
+	// Draw second layer.
 	for(int i=1;i<4;i++){
 		count = i;
 		pyramid[i].vertices[0][0] = v[i][0];
@@ -222,6 +232,7 @@ void tetrahedron(){
 		triangle(inner_pyramid[i].vertices[3][0],inner_pyramid[i].vertices[3][1],inner_pyramid[i].vertices[3][2]);
 	}
 
+	//Draw third layer.
 	for(int i=1;i<4;i++){
 		count = i;
 		pyramid[i*2+2].vertices[0][0] = pyramid[i].vertices[i][0];
@@ -276,7 +287,9 @@ void tetrahedron(){
 	count = 0;
 }
 
+//Does the pyraminx opeartion.
 void pyraminx_operation(char keypressed, int value){
+	//Layer 1 rotation of all axes.
 	if(value == 1){
 		if(keypressed == 'r'){
 			highlight_pyramid[0] = 0;
@@ -307,6 +320,7 @@ void pyraminx_operation(char keypressed, int value){
 			color[8][2] = temp_color;
 		}
 	}
+	//Layer 2 rotation of all axes.
 	if(value == 2){
 		int pyramid_path[3] = {0};
 		if(keypressed == 'f'){
@@ -450,6 +464,7 @@ void pyraminx_operation(char keypressed, int value){
 			inner_pyramid_color[3][2] = temp_inner_pyramid_color;
 		}
 	}
+	//Layer 3 rotation on all axes
 	if(value == 5){
 		int pyramid_path[6] = {0};
 		int inner_pyramid_path[3] = {0};
@@ -800,6 +815,7 @@ void pyraminx_operation(char keypressed, int value){
 	}
 }
 
+//Initializing highlight values.
 void init_highlight(){
 	for(int i=0;i<6;i++){
 		highlight_pyramid[i] = -1;
@@ -811,6 +827,7 @@ void init_highlight(){
 	highlight_pyramid_count = 0;
 }
 
+//Draw pyraminx- Pyramids and inner-pyramids from the stored cooordinates.
 void draw_pyraminx(){
 	for(int pyramid_count = 0; pyramid_count < 10; pyramid_count++){
 		if(pyramid_count == highlight_pyramid[highlight_pyramid_count]){
@@ -843,6 +860,7 @@ void draw_pyraminx(){
 	init_highlight();
 }
 
+//Drawing the front face for easy simulation.
 void draw_front(){
 	int x_factor = 10, y_factor = 1;
 	glPushMatrix();
@@ -967,6 +985,7 @@ void draw_front(){
 	glPopMatrix();
 }
 
+//Drawing the right face for easy simulation.
 void draw_right(){
 	int x_factor = 40, y_factor = 1;
 	glPushMatrix();
@@ -1091,6 +1110,7 @@ void draw_right(){
 	glPopMatrix();
 }
 
+//Drawing the left face for easy simulation.
 void draw_left(){
 	int x_factor = -20, y_factor = 1;
 	glPushMatrix();
@@ -1215,6 +1235,7 @@ void draw_left(){
 	glPopMatrix();
 }
 
+//Drawing the bottom face for easy simulation.
 void draw_bottom(){
 	int x_factor = 10, y_factor = -1;
 	glPushMatrix();
@@ -1339,6 +1360,7 @@ void draw_bottom(){
 	glPopMatrix();
 }
 
+//Drawing the up-arrow for easy simulation.
 void draw_up_arrow(){
 	glPushMatrix();
 	glLoadIdentity();
@@ -1379,6 +1401,7 @@ void draw_up_arrow(){
 	glPopMatrix();
 }
 
+//Drawing the down-arrow for easy simulation.
 void draw_down_arrow(){
 	glPushMatrix();
 	glLoadIdentity();
@@ -1419,6 +1442,7 @@ void draw_down_arrow(){
 	glPopMatrix();
 }
 
+//Draw Characters on the screen.
 void draw_characters(GLfloat x, GLfloat y, GLfloat z, const char* text, int font){
     const char *c;
     glRasterPos3f(x,y,z);
@@ -1429,6 +1453,7 @@ void draw_characters(GLfloat x, GLfloat y, GLfloat z, const char* text, int font
             glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,*c);
 }
 
+//Called whenever an operation is performed.
 void mydisplay(char keypressed, int value){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
@@ -1452,8 +1477,10 @@ void mydisplay(char keypressed, int value){
 	glutSwapBuffers();
 }
 
+//Preventing display to be called more than once.
 int flag_display = 0;
 
+//called only once.
 void display(void){
 	if(flag_display == 1){
 		mydisplay('z',10);
@@ -1481,6 +1508,8 @@ void display(void){
 		glutSwapBuffers();
 	}
 }
+
+//For highlighting purposes.
 int window_width,window_height;
 void hover(int x, int y){
 	if(x>=1011 && x<=1054 && y<=210*window_height/500 && y>=190*window_height/500){
@@ -1568,6 +1597,7 @@ void hover(int x, int y){
 	mydisplay('z',10);
 }
 
+//For mouse-click operation.
 void mouse(int btn, int state, int x, int y){
 	char keypressed = 'z';
 	int value = 10;
@@ -1634,8 +1664,7 @@ void mouse(int btn, int state, int x, int y){
 	mydisplay(keypressed, value);
 }
 
-// GLint win1;
-
+//For keyboard operation.
 void keys(unsigned char key, int x, int y){
 	char keypressed = 'z';
 	int value = 10;
@@ -1732,6 +1761,7 @@ void keys(unsigned char key, int x, int y){
 	mydisplay(keypressed, value);
 }
 
+//To help reshape the window.
 void myReshape(int w, int h){
 	window_height = h;
 	window_width = w;
@@ -1745,6 +1775,7 @@ void myReshape(int w, int h){
 	glMatrixMode(GL_MODELVIEW);
 }
 
+// Main funtion.
 // int  main(int argc, char **argv){
 //     glutInit(&argc, argv);
 //     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);

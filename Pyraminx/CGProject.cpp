@@ -2,11 +2,12 @@
 #include<iostream>
 #include<GL/glut.h>
 #include<string.h>
-#include"rubixcube.h"
-#include"pyraminx.h"
+#include"rubixcube.h"   //calls rubix's cube code.
+#include"pyraminx.h"    //calls pyraminx code.
 
 using namespace std;
 
+// used for drawing text.
 void draw_text(int x, int y, const char* text, int font){
     const char *c;
     glRasterPos2i(x,y);
@@ -17,6 +18,7 @@ void draw_text(int x, int y, const char* text, int font){
             glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,*c);
 }
 
+// Draws the choose text.
 void choose_text(){
     string front1 = "Choose by entering 1, 2, or 3:";
     string front2 = "1. Pyraminx";
@@ -28,6 +30,7 @@ void choose_text(){
     draw_text(20, 55, front4.data(),1);
 }
 
+// calls all the funtions needed for proper functioning.
 void display2(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     choose_text();
@@ -43,15 +46,13 @@ void display2(void){
 	glutSwapBuffers();
 }
 
+// Used for deciding which window needs to be called.
 GLint win1, win2, win3;
 
-void mouse2(int btn, int state, int x,int y){
-}
-
+//Choosing which operation - pyraminx, rubix's cube or exit.
 void keys2(unsigned char key, int x,int y){
     if(key == '1'){
         win1 = glutCreateWindow("Pyraminx");
-        // printf("win1: %d\n", win1);
 	    glutFullScreen();
         glutReshapeFunc(myReshape);
         glutDisplayFunc(display);
@@ -62,7 +63,6 @@ void keys2(unsigned char key, int x,int y){
     }
     else if(key == '2'){
         win2 = glutCreateWindow("colorcube");
-        // printf("win2: %d\n", win2);
 	    glutFullScreen();
         glutReshapeFunc(myReshape1);
         glutDisplayFunc(display1);
@@ -74,6 +74,7 @@ void keys2(unsigned char key, int x,int y){
         glutDestroyWindow(win3);
 }
 
+// To define the width and height of the draw-space.
 void myReshape2(int w, int h){
 	glViewport(0,0,w,h);
 	glMatrixMode(GL_PROJECTION); 
@@ -82,15 +83,14 @@ void myReshape2(int w, int h){
 	glMatrixMode(GL_MODELVIEW);
 }
 
+//Main function.
 int main(int argc, char **argv){
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     win3 = glutCreateWindow("Front Window");
-    // printf("win3: %d\n", win3);
     glutFullScreen();
 	glutReshapeFunc(myReshape2);
 	glutDisplayFunc(display2);
-	glutMouseFunc(mouse2);
 	glutKeyboardFunc(keys2);
 	glutMainLoop();
 	return 0;
