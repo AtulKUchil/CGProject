@@ -2,6 +2,7 @@
 #define PYRAMINX_H
 
 extern GLint win1;
+extern GLint win3;
 
 void triangle(GLfloat *a, GLfloat *b,GLfloat*c);
 void triangle1(GLfloat *a, GLfloat *b,GLfloat*c, int color_value);

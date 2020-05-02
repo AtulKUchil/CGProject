@@ -2,9 +2,12 @@
 #include<iostream>
 #include<GL/glut.h>
 #include<math.h>
+#include<string.h>
 #include"rubixcube.h"
 
-GLfloat vertices[][3] = {{-1.0,-1.0,-1.0},{1.0,-1.0,-1.0},{1.0,1.0,-1.0}, {-1.0,1.0,-1.0}, {-1.0,-1.0,1.0}, {1.0,-1.0,1.0}, {1.0,1.0,1.0}, {-1.0,1.0,1.0}};
+using namespace std;
+
+GLfloat vertices[][3] = {{-2,-2,-2},{2,-2,-2},{2,2,-2}, {-2,2,-2}, {-2,-2,2}, {2,-2,2}, {2,2,2}, {-2,2,2}};
 
 GLfloat colors1[][3] = {{1.0,1.0,1.0},{1.0,0.5,0.0},{1.0,1.0,1.0},{0.0,0.7,0.0},{1.0,1.0,0.0},{0.0,0.0,1.0},{1.0,1.0,1.0},{0.7,0.0,0.0}};
 
@@ -22,33 +25,33 @@ void polygon(int a, int b, int c , int d, int x, int y, int z){
     int cube_no = 9*(x+1) + 3*(y+1) + (z+1);
 	glBegin(GL_POLYGON);
 	glColor3fv(colors1[d]);		
-	sum[a][0] = vertices[a][0] + 2.0*x;
-	sum[a][1] = vertices[a][1] + 2.0*y;
-	sum[a][2] = vertices[a][2] + 2.0*z; 
+	sum[a][0] = vertices[a][0] + 4.0*x;
+	sum[a][1] = vertices[a][1] + 4.0*y;
+	sum[a][2] = vertices[a][2] + 4.0*z; 
 	glVertex3fv(sum[a]);
     cube[cube_no].cube_vertices[a][0] = sum[a][0];
     cube[cube_no].cube_vertices[a][1] = sum[a][1];
     cube[cube_no].cube_vertices[a][2] = sum[a][2];
 	
-    sum[b][0] = vertices[b][0] + 2.0*x;
-	sum[b][1] = vertices[b][1] + 2.0*y;
-	sum[b][2] = vertices[b][2] + 2.0*z;
+    sum[b][0] = vertices[b][0] + 4.0*x;
+	sum[b][1] = vertices[b][1] + 4.0*y;
+	sum[b][2] = vertices[b][2] + 4.0*z;
 	glVertex3fv(sum[b]);
     cube[cube_no].cube_vertices[b][0] = sum[b][0];
     cube[cube_no].cube_vertices[b][1] = sum[b][1];
     cube[cube_no].cube_vertices[b][2] = sum[b][2];
 	
-    sum[c][0] = vertices[c][0] + 2.0*x;
-	sum[c][1] = vertices[c][1] + 2.0*y;
-	sum[c][2] = vertices[c][2] + 2.0*z;
+    sum[c][0] = vertices[c][0] + 4.0*x;
+	sum[c][1] = vertices[c][1] + 4.0*y;
+	sum[c][2] = vertices[c][2] + 4.0*z;
 	glVertex3fv(sum[c]);
     cube[cube_no].cube_vertices[c][0] = sum[c][0];
     cube[cube_no].cube_vertices[c][1] = sum[c][1];
     cube[cube_no].cube_vertices[c][2] = sum[c][2];
 	
-    sum[d][0] = vertices[d][0] + 2.0*x;
-	sum[d][1] = vertices[d][1] + 2.0*y;
-	sum[d][2] = vertices[d][2] + 2.0*z;
+    sum[d][0] = vertices[d][0] + 4.0*x;
+	sum[d][1] = vertices[d][1] + 4.0*y;
+	sum[d][2] = vertices[d][2] + 4.0*z;
 	glVertex3fv(sum[d]);
     cube[cube_no].cube_vertices[d][0] = sum[d][0];
     cube[cube_no].cube_vertices[d][1] = sum[d][1];
@@ -127,7 +130,6 @@ void updateZRotation(int count, int a, int b, int c, int d){
     temp[count][d][1] = cube[count].cube_vertices[d][1]*cos(90*3.14159265/180) + tempd*sin(90*3.14159265/180);
 }
 
-
 void polygon1(int a,int b, int c, int d,int x, int y, int z, int keypressedx, int keypressedy, int keypressedz){
     int count = 9*(x+1) + 3*(y+1) + (z+1);
     
@@ -176,7 +178,6 @@ void polygon1(int a,int b, int c, int d,int x, int y, int z, int keypressedx, in
 	glVertex3fv(temp[count][d]);
 	glEnd();
 }
-
 
 static GLfloat theta[] = {0.0,0.0,0.0};
 static GLint axis = 2;
@@ -349,6 +350,136 @@ void colorcube(){
     }
 }
 
+void draw_character(GLfloat x, GLfloat y, GLfloat z, const char* text, int font){
+    const char *c;
+    glRasterPos3f(x,y,z);
+    for(c=text;*c!='\0';c++)
+        if(font == 1)
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,*c);
+        else
+            glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,*c);
+}
+
+void draw_square(){
+    glPushMatrix();
+    glLoadIdentity();
+    glBegin(GL_POLYGON);
+    glColor3f(0.7,0.0,0.0);
+    glVertex3f(20.0, 4.0,0.0);
+    glVertex3f(24.0, 4.0,0.0);
+    glVertex3f(24.0,-4.0,0.0);
+    glVertex3f(20.0,-4.0,0.0);
+    glEnd();
+    glBegin(GL_POLYGON);
+    glColor3f(0.0,0.0,1.0);
+    glVertex3f(24.0, 4.0,0.0);
+    glVertex3f(28.0, 4.0,0.0);
+    glVertex3f(28.0,-4.0,0.0);
+    glVertex3f(24.0,-4.0,0.0);
+    glEnd();
+    glBegin(GL_POLYGON);
+    glColor3f(1.0,0.5,0.0);
+    glVertex3f(28.0, 4.0,0.0);
+    glVertex3f(32.0, 4.0,0.0);
+    glVertex3f(32.0,-4.0,0.0);
+    glVertex3f(28.0,-4.0,0.0);
+    glEnd();
+    glBegin(GL_POLYGON);
+    glColor3f(0.0,0.7,0.0);
+    glVertex3f(32.0, 4.0,0.0);
+    glVertex3f(36.0, 4.0,0.0);
+    glVertex3f(36.0,-4.0,0.0);
+    glVertex3f(32.0,-4.0,0.0);
+    glEnd();
+    glBegin(GL_POLYGON);
+    glColor3f(1.0,1.0,1.0);
+    glVertex3f(36.0, 4.0,0.0);
+    glVertex3f(40.0, 4.0,0.0);
+    glVertex3f(40.0,-4.0,0.0);
+    glVertex3f(36.0,-4.0,0.0);
+    glEnd();
+    glBegin(GL_POLYGON);
+    glColor3f(1.0,1.0,0.0);
+    glVertex3f(40.0, 4.0,0.0);
+    glVertex3f(44.0, 4.0,0.0);
+    glVertex3f(44.0,-4.0,0.0);
+    glVertex3f(40.0,-4.0,0.0);
+    glEnd();
+    glBegin(GL_LINE_LOOP);
+    glColor3f(0.0,0.0,0.0);
+    glVertex3f(20.0, 4.0,0.1);
+    glVertex3f(24.0, 4.0,0.1);
+    glVertex3f(24.0,-4.0,0.1);
+    glVertex3f(20.0,-4.0,0.1);
+    glEnd();
+    glBegin(GL_LINE_LOOP);
+    glColor3f(0.0,0.0,0.0);
+    glVertex3f(24.0, 4.0,0.1);
+    glVertex3f(28.0, 4.0,0.1);
+    glVertex3f(28.0,-4.0,0.1);
+    glVertex3f(24.0,-4.0,0.1);
+    glEnd();
+    glBegin(GL_LINE_LOOP);
+    glColor3f(0.0,0.0,0.0);
+    glVertex3f(32.0, 4.0,0.1);
+    glVertex3f(28.0, 4.0,0.1);
+    glVertex3f(28.0,-4.0,0.1);
+    glVertex3f(32.0,-4.0,0.1);
+    glEnd();
+    glBegin(GL_LINE_LOOP);
+    glColor3f(0.0,0.0,0.0);
+    glVertex3f(36.0, 4.0,0.1);
+    glVertex3f(32.0, 4.0,0.1);
+    glVertex3f(32.0,-4.0,0.1);
+    glVertex3f(36.0,-4.0,0.1);
+    glEnd();
+    glBegin(GL_LINE_LOOP);
+    glColor3f(0.0,0.0,0.0);
+    glVertex3f(40.0, 4.0,0.1);
+    glVertex3f(36.0, 4.0,0.1);
+    glVertex3f(36.0,-4.0,0.1);
+    glVertex3f(40.0,-4.0,0.1);
+    glEnd();
+    glBegin(GL_LINE_LOOP);
+    glColor3f(0.0,0.0,0.0);
+    glVertex3f(44.0, 4.0,0.1);
+    glVertex3f(40.0, 4.0,0.1);
+    glVertex3f(40.0,-4.0,0.1);
+    glVertex3f(44.0,-4.0,0.1);
+    glEnd();
+    glBegin(GL_LINES);
+    glColor3f(0.0,0.0,0.0);
+    glVertex3f(20.0, 0.0,0.1);
+    glVertex3f(44.0, 0.0,0.1);
+    glEnd();
+
+    string f = "F";
+    draw_character(21.8,1.5,0.1,f.data(),1);
+    string r = "R";
+    draw_character(25.8,1.5,0.1,r.data(),1);
+    string b = "B";
+    draw_character(29.8,1.5,0.1,b.data(),1);
+    string l = "L";
+    draw_character(33.8,1.5,0.1,l.data(),1);
+    string u = "U";
+    draw_character(37.8,1.5,0.1,u.data(),1);
+    string d = "D";
+    draw_character(41.8,1.5,0.1,d.data(),1);
+    string f_inverse = "F'";
+    draw_character(21.8,-2.5,0.1,f_inverse.data(),1);
+    string r_inverse = "R'";
+    draw_character(25.8,-2.5,0.1,r_inverse.data(),1);
+    string b_inverse = "B'";
+    draw_character(29.8,-2.5,0.1,b_inverse.data(),1);
+    string l_inverse = "L'";
+    draw_character(33.8,-2.5,0.1,l_inverse.data(),1);
+    string u_inverse = "U'";
+    draw_character(37.8,-2.5,0.1,u_inverse.data(),1);
+    string d_inverse = "D'";
+    draw_character(41.8,-2.5,0.1,d_inverse.data(),1);
+    glPopMatrix();
+}
+
 void mydisplay1(int keypressedx, int keypressedy, int keypressedz){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
@@ -358,6 +489,13 @@ void mydisplay1(int keypressedx, int keypressedy, int keypressedz){
     glRotatef(angle_cube_y,0.0,1.0,0.0);
     // printf("%f %f\n", cos(90*3.14159265/180), sin(90*3.14159265/180));
     colorcube1(keypressedx,keypressedy,keypressedz);
+    draw_square();
+    string quit = "Press q to quit";
+    glPushMatrix();
+    glLoadIdentity();
+    glColor3f(1.0,1.0,1.0);
+    draw_character(-5, 20, 0, quit.data(), 1);
+    glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
 }
@@ -377,29 +515,82 @@ void display1(void){
     glRotatef(angle_cube_y,0.0,1.0,0.0);
     flag_display1 = 1;
     colorcube();
+    draw_square();
+    string quit = "Press q to quit";
+    glPushMatrix();
+    glLoadIdentity();
+    glColor3f(1.0,1.0,1.0);
+    draw_character(-5, 20, 0, quit.data(), 1);
+    glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
     }
 }
 
 void mouse1(int btn, int state, int x, int y){
-    if(btn==GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-        axis = 0;
-    if(btn==GLUT_MIDDLE_BUTTON && state == GLUT_DOWN)
-        axis = 2;
-    if(btn==GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
-        axis = 1;
-    theta[axis] += 22.5;
-    // printf("Axis: %d\n",axis);
-
-	if( theta[axis] > 360.0 )
-        theta[axis] -= 360.0;
-    // printf("theta[axis]: %f\n",theta[axis]);
-	mydisplay1(3,3,3);
+    // printf("x: %d, y: %d\n", x,y);
+    int keypressedx=3, keypressedy=3, keypressedz=3;
+    if(btn==GLUT_LEFT_BUTTON){
+		if(state == GLUT_DOWN){
+			if(x>=681 && x<=751 && y<=539 && y>=470){  // F
+				keypressedz = 1;
+                mydisplay1(keypressedx, keypressedy, keypressedz);
+                mydisplay1(keypressedx, keypressedy, keypressedz);
+			}
+			else if(x>=751 && x<=821 && y<=539 && y>=470){  // R
+			    keypressedx = 1;
+                mydisplay1(keypressedx, keypressedy, keypressedz);
+                mydisplay1(keypressedx, keypressedy, keypressedz);
+			}
+			else if(x>=821 && x<=891 && y<=539 && y>=470){  // B
+			    keypressedz = -1;
+			}
+			else if(x>=891 && x<=961 && y<=539 && y>=470){  // L
+			    keypressedx = -1;
+			}
+			else if(x>=961 && x<=1031 && y<=539 && y>=470){  // U
+			    keypressedy = 1;
+                mydisplay1(keypressedx, keypressedy, keypressedz);
+                mydisplay1(keypressedx, keypressedy, keypressedz);
+			}
+			else if(x>=1031 && x<=1101 && y<=539 && y>=470){  // D
+			    keypressedy = -1;
+			}
+			else if(x>=681 && x<=751 && y<=608 && y>=539){  // F'
+				keypressedz = 1;
+			}
+			else if(x>=751 && x<=821 && y<=608 && y>=539){  // R'
+			    keypressedx = 1;
+			}
+			else if(x>=821 && x<=891 && y<=608 && y>=539){  // B'
+			    keypressedz = -1;
+                mydisplay1(keypressedx, keypressedy, keypressedz);
+                mydisplay1(keypressedx, keypressedy, keypressedz);
+			}
+			else if(x>=891 && x<=961 && y<=608 && y>=539){  // L'
+			    keypressedx = -1;
+                mydisplay1(keypressedx, keypressedy, keypressedz);
+                mydisplay1(keypressedx, keypressedy, keypressedz);
+			}
+			else if(x>=961 && x<=1031 && y<=608 && y>=539){  // U'
+			    keypressedy = 1;
+			}
+			else if(x>=1031 && x<=1101 && y<=608 && y>=539){  // D'
+			    keypressedy = -1;
+                mydisplay1(keypressedx, keypressedy, keypressedz);
+                mydisplay1(keypressedx, keypressedy, keypressedz);
+			}
+			else{
+                keypressedx = 3;
+                keypressedy = 3;
+                keypressedz = 3;
+            }
+		}
+    }
+	mydisplay1(keypressedx,keypressedy,keypressedz);
 }
 
-void keys1(unsigned char key, int x, int y)
-{
+void keys1(unsigned char key, int x, int y){
     int keypressedx = 3, keypressedy = 3,keypressedz = 3;
     switch(key){
 	case 'A':
@@ -441,31 +632,82 @@ void keys1(unsigned char key, int x, int y)
         keypressedx = -1;
     else if(key == 'b')
         keypressedx = 1;
-    else
-        keypressedx = 3;
+    // else
+    //     keypressedx = 3;
 
-    if(key == 'r')
+    else if(key == 'r')
         keypressedy = 1;
     else if(key == 'f')
         keypressedy = 0;
     else if(key == 'v')
         keypressedy = -1;
-    else
-        keypressedy = 3;
+    // else
+    //     keypressedy = 3;
 
-    if(key == 'y')
+    else if(key == 'y')
         keypressedz = -1;
     else if(key == 'h')
         keypressedz = 0;
     else if(key == 'n')
         keypressedz = 1;
-    else
-        keypressedz = 3;
+    // else
+    //     keypressedz = 3;
 
-    if(key == 'G'){
+    else if(key == 'G'){
         keypressedx = 0;
         mydisplay1(keypressedx, keypressedy, keypressedz);
         mydisplay1(keypressedx, keypressedy, keypressedz);
+    }
+    else if(key == 'T'){
+        keypressedx = -1;
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+    }
+    else if(key == 'B'){
+        keypressedx = 1;
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+    }
+    // else
+    //     keypressedx = 3;
+
+    else if(key == 'R'){
+        keypressedy = 1;
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+    }
+    else if(key == 'F'){
+        keypressedy = 0;
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+    }
+    else if(key == 'V'){
+        keypressedy = -1;
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+    }
+    // else
+    //     keypressedy = 3;
+
+    else if(key == 'Y'){
+        keypressedz = -1;
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+    }
+    else if(key == 'H'){
+        keypressedz = 0;
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+    }
+    else if(key == 'N'){
+        keypressedz = 1;
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+        mydisplay1(keypressedx, keypressedy, keypressedz);
+    }
+    else{
+        keypressedx = 3;
+        keypressedy = 3;
+        keypressedz = 3;
     }
 
     if(key == 'q')
@@ -485,18 +727,18 @@ void myReshape1(int w, int h){
 	glMatrixMode(GL_PROJECTION); 
 	glLoadIdentity();
 	if(w<=h)
-		glOrtho(-10.0,10.0*(GLfloat)h/(GLfloat)w,-10.0*(GLfloat)h/(GLfloat)w, 10.0,-50.0,50.0);
+		glOrtho(-10.0,50.0*(GLfloat)h/(GLfloat)w,-30.0*(GLfloat)h/(GLfloat)w, 30.0,-50.0,50.0);
 	else
-		glOrtho(-10.0*(GLfloat)w/(GLfloat)h, 10.0*(GLfloat)w/(GLfloat)h,-10.0,10.0,-50.0,50.0);
+		glOrtho(-10.0*(GLfloat)w/(GLfloat)h, 50.0*(GLfloat)w/(GLfloat)h,-30.0,30.0,-50.0,50.0);
 	glMatrixMode(GL_MODELVIEW);
 }
 
-// int main(int argc, char **argv)
-// {
+// int main(int argc, char **argv){
 //     glutInit(&argc, argv);
 //     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-//     glutInitWindowSize(500, 500);
+//     // glutInitWindowSize(500, 500);
 //     glutCreateWindow("colorcube");
+//     glutFullScreen();
 //     glutReshapeFunc(myReshape1);
 //     glutDisplayFunc(display1);
 //     glutMouseFunc(mouse1);

@@ -51,6 +51,7 @@ void mouse2(int btn, int state, int x,int y){
 void keys2(unsigned char key, int x,int y){
     if(key == '1'){
         win1 = glutCreateWindow("Pyraminx");
+        // printf("win1: %d\n", win1);
 	    glutFullScreen();
         glutReshapeFunc(myReshape);
         glutDisplayFunc(display);
@@ -61,6 +62,7 @@ void keys2(unsigned char key, int x,int y){
     }
     else if(key == '2'){
         win2 = glutCreateWindow("colorcube");
+        // printf("win2: %d\n", win2);
 	    glutFullScreen();
         glutReshapeFunc(myReshape1);
         glutDisplayFunc(display1);
@@ -84,6 +86,7 @@ int main(int argc, char **argv){
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     win3 = glutCreateWindow("Front Window");
+    // printf("win3: %d\n", win3);
     glutFullScreen();
 	glutReshapeFunc(myReshape2);
 	glutDisplayFunc(display2);

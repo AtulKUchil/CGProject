@@ -2,7 +2,10 @@
 #include<iostream>
 #include<GL/glut.h>
 #include<math.h>
+#include<string.h>
 #include"pyraminx.h"
+
+using namespace std;
 
 GLfloat v[4][3] = {{0.0,45.0,0.0},{-12.245,25.0,7.07},{12.245,25.0,7.07},{0.0,25.0,-14.14}};
 GLfloat colors[4][3] = {{1.0,0.0,0.0}, {0.0,0.0,1.0}, {0.0,1.0,0.0}, {1.0,1.0,0.0}};
@@ -1416,6 +1419,16 @@ void draw_down_arrow(){
 	glPopMatrix();
 }
 
+void draw_characters(GLfloat x, GLfloat y, GLfloat z, const char* text, int font){
+    const char *c;
+    glRasterPos3f(x,y,z);
+    for(c=text;*c!='\0';c++)
+        if(font == 1)
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,*c);
+        else
+            glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,*c);
+}
+
 void mydisplay(char keypressed, int value){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
@@ -1429,6 +1442,12 @@ void mydisplay(char keypressed, int value){
 	draw_bottom();
 	draw_up_arrow();
 	draw_down_arrow();
+	string quit = "Press q to quit";
+    glPushMatrix();
+    glLoadIdentity();
+    glColor3f(1.0,1.0,1.0);
+    draw_characters(-20, 70, 0, quit.data(), 1);
+    glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
 }
@@ -1452,6 +1471,12 @@ void display(void){
 		draw_bottom();
 		draw_up_arrow();
 		draw_down_arrow();
+		string quit = "Press q to quit";
+    	glPushMatrix();
+    	glLoadIdentity();
+    	glColor3f(1.0,1.0,1.0);
+    	draw_characters(-20, 70, 0, quit.data(), 1);
+    	glPopMatrix();
 		glFlush();
 		glutSwapBuffers();
 	}
