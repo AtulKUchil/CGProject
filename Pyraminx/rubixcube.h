@@ -1,9 +1,6 @@
 #ifndef RUBIXCUBE_H
 #define RUBIXCUBE_H
 
-extern GLint win2;
-extern GLint win3;
-
 void polygon(int a, int b, int c , int d, int x, int y, int z);
 void updateXRotation(int count, int a, int b, int c, int d);
 void updateYRotation(int count, int a, int b, int c, int d);

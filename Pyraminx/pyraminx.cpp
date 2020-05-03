@@ -1703,7 +1703,7 @@ void keys(unsigned char key, int x, int y){
 	}
 
 	if(key == 'q'){
-		glutDestroyWindow(win1);
+		exit(0);
 	}
 
 	mydisplay(keypressed, value);

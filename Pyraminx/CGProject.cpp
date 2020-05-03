@@ -46,13 +46,11 @@ void display2(void){
 	glutSwapBuffers();
 }
 
-// Used for deciding which window needs to be called.
-GLint win1, win2, win3;
-
 //Choosing which operation - pyraminx, rubix's cube or exit.
 void keys2(unsigned char key, int x,int y){
     if(key == '1'){
-        win1 = glutCreateWindow("Pyraminx");
+        // Calling Pyraminx Code by creating new window.
+        glutCreateWindow("Pyraminx");
 	    glutFullScreen();
         glutReshapeFunc(myReshape);
         glutDisplayFunc(display);
@@ -62,7 +60,8 @@ void keys2(unsigned char key, int x,int y){
         glEnable(GL_DEPTH_TEST);
     }
     else if(key == '2'){
-        win2 = glutCreateWindow("colorcube");
+        // Calling Rubix's Cube Code by creating new window.
+        glutCreateWindow("Rubix's Code");
 	    glutFullScreen();
         glutReshapeFunc(myReshape1);
         glutDisplayFunc(display1);
@@ -70,8 +69,9 @@ void keys2(unsigned char key, int x,int y){
         glutKeyboardFunc(keys1);
         glEnable(GL_DEPTH_TEST);
     }
-    else if(key == '3')
-        glutDestroyWindow(win3);
+    else if(key == '3'){
+        exit(0);
+    }
 }
 
 // To define the width and height of the draw-space.
@@ -87,7 +87,7 @@ void myReshape2(int w, int h){
 int main(int argc, char **argv){
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    win3 = glutCreateWindow("Front Window");
+    glutCreateWindow("Front Window");
     glutFullScreen();
 	glutReshapeFunc(myReshape2);
 	glutDisplayFunc(display2);

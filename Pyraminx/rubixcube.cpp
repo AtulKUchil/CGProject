@@ -577,9 +577,10 @@ void keys1(unsigned char key, int x, int y){
 		break;
 	}
 
-    // Destroy window when q is pressed.
-    if(key == 'q')
-        glutDestroyWindow(win2);
+    // Quit code when pressed.
+    if(key == 'q'){
+        exit(0);
+    }
     
     mydisplay1(keypressedx, keypressedy, keypressedz);
 }
