@@ -577,79 +577,6 @@ void keys1(unsigned char key, int x, int y){
 		break;
 	}
 
-    if(key == 'g')
-        keypressedx = 0;
-    else if(key == 't')
-        keypressedx = -1;
-    else if(key == 'b')
-        keypressedx = 1;
-    else if(key == 'r')
-        keypressedy = 1;
-    else if(key == 'f')
-        keypressedy = 0;
-    else if(key == 'v')
-        keypressedy = -1;
- 
-    else if(key == 'y')
-        keypressedz = -1;
-    else if(key == 'h')
-        keypressedz = 0;
-    else if(key == 'n')
-        keypressedz = 1;
-
-    else if(key == 'G'){
-        keypressedx = 0;
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-    }
-    else if(key == 'T'){
-        keypressedx = -1;
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-    }
-    else if(key == 'B'){
-        keypressedx = 1;
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-    }
-
-    else if(key == 'R'){
-        keypressedy = 1;
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-    }
-    else if(key == 'F'){
-        keypressedy = 0;
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-    }
-    else if(key == 'V'){
-        keypressedy = -1;
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-    }
-
-    else if(key == 'Y'){
-        keypressedz = -1;
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-    }
-    else if(key == 'H'){
-        keypressedz = 0;
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-    }
-    else if(key == 'N'){
-        keypressedz = 1;
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-        mydisplay1(keypressedx, keypressedy, keypressedz);
-    }
-    else{
-        keypressedx = 3;
-        keypressedy = 3;
-        keypressedz = 3;
-    }
-
     // Destroy window when q is pressed.
     if(key == 'q')
         glutDestroyWindow(win2);
@@ -670,19 +597,3 @@ void myReshape1(int w, int h){
 		glOrtho(-10.0*(GLfloat)w/(GLfloat)h, 50.0*(GLfloat)w/(GLfloat)h,-30.0,30.0,-50.0,50.0);
 	glMatrixMode(GL_MODELVIEW);
 }
-
-//Main Function.
-// int main(int argc, char **argv){
-//     glutInit(&argc, argv);
-//     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-//     // glutInitWindowSize(500, 500);
-//     glutCreateWindow("colorcube");
-//     glutFullScreen();
-//     glutReshapeFunc(myReshape1);
-//     glutDisplayFunc(display1);
-//     glutMouseFunc(mouse1);
-//     glutKeyboardFunc(keys1);
-//     glEnable(GL_DEPTH_TEST);
-//     glutMainLoop();
-//     return 0;
-// }

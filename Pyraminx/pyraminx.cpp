@@ -1702,58 +1702,6 @@ void keys(unsigned char key, int x, int y){
 		break;
 	}
 
-	if(key == 'r'){
-		keypressed = 'r';
-		value = 1;
-	}
-	else if(key == 't'){
-		keypressed = 't';
-		value = 1;
-	}
-	else if(key == 'y'){
-		keypressed = 'y';
-		value = 1;
-	}
-	else if(key == 'u'){
-		keypressed = 'u';
-		value = 1;
-	}
-	else if(key == 'f'){
-		keypressed = 'f';
-		value = 2;
-	}
-	else if(key == 'g'){
-		keypressed = 'g';
-		value = 2;
-	}
-	else if(key == 'h'){
-		keypressed = 'h';
-		value = 2;
-	}
-	else if(key == 'j'){
-		keypressed = 'j';
-		value = 2;
-	}
-	else if(key == 'v'){
-		keypressed = 'v';
-		value = 5;
-	}
-	else if(key == 'b'){
-		keypressed = 'b';
-		value = 5;
-	}
-	else if(key == 'n'){
-		keypressed = 'n';
-		value = 5;
-	}
-	else if(key == 'm'){
-		keypressed = 'm';
-		value = 5;
-	}
-	else{
-		keypressed = 'z';
-		value = 10;
-	}
 	if(key == 'q'){
 		glutDestroyWindow(win1);
 	}
@@ -1774,20 +1722,3 @@ void myReshape(int w, int h){
 		glOrtho(-50.0*(GLfloat)w/(GLfloat)h, 200.0*(GLfloat)w/(GLfloat)h,-100.0,100.0,-100.0,100.0);
 	glMatrixMode(GL_MODELVIEW);
 }
-
-// Main funtion.
-// int  main(int argc, char **argv){
-//     glutInit(&argc, argv);
-//     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-// 	glutInitWindowSize(500, 500);
-//     glutCreateWindow("Pyraminx");
-// 	glutFullScreen();
-//     glutReshapeFunc(myReshape);
-//     glutDisplayFunc(display);
-// 	glutPassiveMotionFunc(hover);
-// 	glutKeyboardFunc(keys);
-// 	glutMouseFunc(mouse);
-//     glEnable(GL_DEPTH_TEST);
-//     glutMainLoop();
-//     return 0;
-// }
