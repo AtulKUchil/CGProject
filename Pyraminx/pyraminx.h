@@ -13,11 +13,12 @@ void draw_left();
 void draw_bottom();
 void draw_up_arrow();
 void draw_down_arrow();
-void mydisplay(char keypressed, int value);
-void display(void);
-void hover(int x, int y);
-void mouse(int btn, int state, int x, int y);
-void keys(unsigned char key, int x, int y);
-void myReshape(int w, int h);
+void draw_text_pyraminx(GLfloat x, GLfloat y, GLfloat z, const char* text, int font);
+void mydisplay_pyraminx(char keypressed, int value);
+void display_pyraminx(void);
+void hover_pyraminx(int x, int y);
+void mouse_pyraminx(int btn, int state, int x, int y);
+void keys_pyraminx(unsigned char key, int x, int y);
+void myReshape_pyraminx(int w, int h);
 
 #endif

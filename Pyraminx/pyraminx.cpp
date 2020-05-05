@@ -1443,7 +1443,7 @@ void draw_down_arrow(){
 }
 
 //Draw Characters on the screen.
-void draw_characters(GLfloat x, GLfloat y, GLfloat z, const char* text, int font){
+void draw_text_pyraminx(GLfloat x, GLfloat y, GLfloat z, const char* text, int font){
     const char *c;
     glRasterPos3f(x,y,z);
     for(c=text;*c!='\0';c++)
@@ -1454,7 +1454,7 @@ void draw_characters(GLfloat x, GLfloat y, GLfloat z, const char* text, int font
 }
 
 //Called whenever an operation is performed.
-void mydisplay(char keypressed, int value){
+void mydisplay_pyraminx(char keypressed, int value){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 	glRotatef(anglex,1.0,0.0,0.0);
@@ -1467,11 +1467,13 @@ void mydisplay(char keypressed, int value){
 	draw_bottom();
 	draw_up_arrow();
 	draw_down_arrow();
+	string movement = "Press w, a, s, d to move the pyraminx.";
 	string quit = "Press q to quit";
     glPushMatrix();
     glLoadIdentity();
     glColor3f(1.0,1.0,1.0);
-    draw_characters(-20, 70, 0, quit.data(), 1);
+	draw_text_pyraminx(-20, 80, 0, movement.data(), 1);
+    draw_text_pyraminx(-20, 70, 0, quit.data(), 1);
     glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -1481,9 +1483,9 @@ void mydisplay(char keypressed, int value){
 int flag_display = 0;
 
 //called only once.
-void display(void){
+void display_pyraminx(void){
 	if(flag_display == 1){
-		mydisplay('z',10);
+		mydisplay_pyraminx('z',10);
 	}
 	else{
 		flag_display = 1;
@@ -1498,11 +1500,13 @@ void display(void){
 		draw_bottom();
 		draw_up_arrow();
 		draw_down_arrow();
+		string movement = "Press w, a, s, d to move the pyraminx.";
 		string quit = "Press q to quit";
     	glPushMatrix();
     	glLoadIdentity();
     	glColor3f(1.0,1.0,1.0);
-    	draw_characters(-20, 70, 0, quit.data(), 1);
+		draw_text_pyraminx(-20, 80, 0, movement.data(), 1);
+    	draw_text_pyraminx(-20, 70, 0, quit.data(), 1);
     	glPopMatrix();
 		glFlush();
 		glutSwapBuffers();
@@ -1511,7 +1515,7 @@ void display(void){
 
 //For highlighting purposes.
 int window_width,window_height;
-void hover(int x, int y){
+void hover_pyraminx(int x, int y){
 	if(x>=1011 && x<=1054 && y<=210*window_height/500 && y>=190*window_height/500){
 		highlight_pyramid[0] = 0;
 	}
@@ -1594,11 +1598,11 @@ void hover(int x, int y){
 	}
 	// printf("x: %d y: %d\n", x, y);
 
-	mydisplay('z',10);
+	mydisplay_pyraminx('z',10);
 }
 
 //For mouse-click operation.
-void mouse(int btn, int state, int x, int y){
+void mouse_pyraminx(int btn, int state, int x, int y){
 	char keypressed = 'z';
 	int value = 10;
 	if(btn==GLUT_LEFT_BUTTON){
@@ -1661,11 +1665,11 @@ void mouse(int btn, int state, int x, int y){
 				value = 10;
 		}
 	}
-	mydisplay(keypressed, value);
+	mydisplay_pyraminx(keypressed, value);
 }
 
 //For keyboard operation.
-void keys(unsigned char key, int x, int y){
+void keys_pyraminx(unsigned char key, int x, int y){
 	char keypressed = 'z';
 	int value = 10;
 	switch(key){
@@ -1706,11 +1710,11 @@ void keys(unsigned char key, int x, int y){
 		exit(0);
 	}
 
-	mydisplay(keypressed, value);
+	mydisplay_pyraminx(keypressed, value);
 }
 
 //To help reshape the window.
-void myReshape(int w, int h){
+void myReshape_pyraminx(int w, int h){
 	window_height = h;
 	window_width = w;
 	glViewport(0,0,w,h);

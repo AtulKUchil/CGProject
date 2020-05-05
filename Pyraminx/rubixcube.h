@@ -8,11 +8,13 @@ void updateZRotation(int count, int a, int b, int c, int d);
 void polygon1(int a,int b, int c, int d,int x, int y, int z, int keypressedx, int keypressedy, int keypressedz);
 void colorcube1(int keypressedx, int keypressedy, int keypressedz);
 void colorcube();
-void mydisplay1(int keypressedx, int keypressedy, int keypressedz);
-void display1(void);
-void mouse1(int btn, int state, int x, int y);
-void keys1(unsigned char key, int x, int y);
-void myReshape1(int w, int h);
+void draw_text_cube(GLfloat x, GLfloat y, GLfloat z, const char* text, int font);
+void draw_square();
+void mydisplay_cube(int keypressedx, int keypressedy, int keypressedz);
+void display_cube(void);
+void mouse_cube(int btn, int state, int x, int y);
+void keys_cube(unsigned char key, int x, int y);
+void myReshape_cube(int w, int h);
 
 
 #endif

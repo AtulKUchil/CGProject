@@ -289,7 +289,7 @@ void colorcube(){
 }
 
 // Drawing Characters in screen.
-void draw_character(GLfloat x, GLfloat y, GLfloat z, const char* text, int font){
+void draw_text_cube(GLfloat x, GLfloat y, GLfloat z, const char* text, int font){
     const char *c;
     glRasterPos3f(x,y,z);
     for(c=text;*c!='\0';c++)
@@ -404,45 +404,47 @@ void draw_square(){
 
     // Drawing the characters on the squares.
     string f = "F";
-    draw_character(21.8,1.5,0.1,f.data(),1);
+    draw_text_cube(21.6,1.5,0.1,f.data(),1);
     string r = "R";
-    draw_character(25.8,1.5,0.1,r.data(),1);
+    draw_text_cube(25.6,1.5,0.1,r.data(),1);
     string b = "B";
-    draw_character(29.8,1.5,0.1,b.data(),1);
+    draw_text_cube(29.6,1.5,0.1,b.data(),1);
     string l = "L";
-    draw_character(33.8,1.5,0.1,l.data(),1);
+    draw_text_cube(33.6,1.5,0.1,l.data(),1);
     string u = "U";
-    draw_character(37.8,1.5,0.1,u.data(),1);
+    draw_text_cube(37.6,1.5,0.1,u.data(),1);
     string d = "D";
-    draw_character(41.8,1.5,0.1,d.data(),1);
+    draw_text_cube(41.6,1.5,0.1,d.data(),1);
     string f_inverse = "F'";
-    draw_character(21.8,-2.5,0.1,f_inverse.data(),1);
+    draw_text_cube(21.6,-2.5,0.1,f_inverse.data(),1);
     string r_inverse = "R'";
-    draw_character(25.8,-2.5,0.1,r_inverse.data(),1);
+    draw_text_cube(25.6,-2.5,0.1,r_inverse.data(),1);
     string b_inverse = "B'";
-    draw_character(29.8,-2.5,0.1,b_inverse.data(),1);
+    draw_text_cube(29.6,-2.5,0.1,b_inverse.data(),1);
     string l_inverse = "L'";
-    draw_character(33.8,-2.5,0.1,l_inverse.data(),1);
+    draw_text_cube(33.6,-2.5,0.1,l_inverse.data(),1);
     string u_inverse = "U'";
-    draw_character(37.8,-2.5,0.1,u_inverse.data(),1);
+    draw_text_cube(37.6,-2.5,0.1,u_inverse.data(),1);
     string d_inverse = "D'";
-    draw_character(41.8,-2.5,0.1,d_inverse.data(),1);
+    draw_text_cube(41.6,-2.5,0.1,d_inverse.data(),1);
     glPopMatrix();
 }
 
 //Display for whenever an operation is done.
-void mydisplay1(int keypressedx, int keypressedy, int keypressedz){
+void mydisplay_cube(int keypressedx, int keypressedy, int keypressedz){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     glRotatef(angle_cube_x,1.0,0.0,0.0);    // rotation of whole cube about x-axis.
     glRotatef(angle_cube_y,0.0,1.0,0.0);    // rotation of whole cube about y-axis.
     colorcube1(keypressedx,keypressedy,keypressedz);    //rotation of layes on keypress.
     draw_square();                          // Drawing the squares with characters on them.
+    string movement = "Press w, a, s, d to move the cube.";
     string quit = "Press q to quit";        
     glPushMatrix();
     glLoadIdentity();
     glColor3f(1.0,1.0,1.0);
-    draw_character(-5, 20, 0, quit.data(), 1);      // Print "Press q to quit" on screen.
+    draw_text_cube(-5, 23, 0, movement.data(), 1);
+    draw_text_cube(-5, 20, 0, quit.data(), 1);      // Print "Press q to quit" on screen.
     glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -452,10 +454,10 @@ void mydisplay1(int keypressedx, int keypressedy, int keypressedz){
 int flag_display1 = 0;
 
 //Called only once unless fullScreen is removed.
-void display1(void){
+void display_cube(void){
     if(flag_display1 == 1){
         // Call this whenever display is called except for the first time.
-        mydisplay1(3,3,3);
+        mydisplay_cube(3,3,3);
     }
     else{
     // Call this only the first time.
@@ -466,11 +468,13 @@ void display1(void){
     flag_display1 = 1;
     colorcube();
     draw_square();
+    string movement = "Press w, a, s, d to move the cube.";
     string quit = "Press q to quit";
     glPushMatrix();
     glLoadIdentity();
     glColor3f(1.0,1.0,1.0);
-    draw_character(-5, 20, 0, quit.data(), 1);
+    draw_text_cube(-5, 23, 0, movement.data(), 1);
+    draw_text_cube(-5, 20, 0, quit.data(), 1);
     glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -478,19 +482,19 @@ void display1(void){
 }
 
 // For mouse Input.
-void mouse1(int btn, int state, int x, int y){
+void mouse_cube(int btn, int state, int x, int y){
     int keypressedx=3, keypressedy=3, keypressedz=3;
     if(btn==GLUT_LEFT_BUTTON){
 		if(state == GLUT_DOWN){
 			if(x>=681 && x<=751 && y<=539 && y>=470){  // F
 				keypressedz = 1;
-                mydisplay1(keypressedx, keypressedy, keypressedz);
-                mydisplay1(keypressedx, keypressedy, keypressedz);
+                mydisplay_cube(keypressedx, keypressedy, keypressedz);
+                mydisplay_cube(keypressedx, keypressedy, keypressedz);
 			}
 			else if(x>=751 && x<=821 && y<=539 && y>=470){  // R
 			    keypressedx = 1;
-                mydisplay1(keypressedx, keypressedy, keypressedz);
-                mydisplay1(keypressedx, keypressedy, keypressedz);
+                mydisplay_cube(keypressedx, keypressedy, keypressedz);
+                mydisplay_cube(keypressedx, keypressedy, keypressedz);
 			}
 			else if(x>=821 && x<=891 && y<=539 && y>=470){  // B
 			    keypressedz = -1;
@@ -500,8 +504,8 @@ void mouse1(int btn, int state, int x, int y){
 			}
 			else if(x>=961 && x<=1031 && y<=539 && y>=470){  // U
 			    keypressedy = 1;
-                mydisplay1(keypressedx, keypressedy, keypressedz);
-                mydisplay1(keypressedx, keypressedy, keypressedz);
+                mydisplay_cube(keypressedx, keypressedy, keypressedz);
+                mydisplay_cube(keypressedx, keypressedy, keypressedz);
 			}
 			else if(x>=1031 && x<=1101 && y<=539 && y>=470){  // D
 			    keypressedy = -1;
@@ -514,21 +518,21 @@ void mouse1(int btn, int state, int x, int y){
 			}
 			else if(x>=821 && x<=891 && y<=608 && y>=539){  // B'
 			    keypressedz = -1;
-                mydisplay1(keypressedx, keypressedy, keypressedz);
-                mydisplay1(keypressedx, keypressedy, keypressedz);
+                mydisplay_cube(keypressedx, keypressedy, keypressedz);
+                mydisplay_cube(keypressedx, keypressedy, keypressedz);
 			}
 			else if(x>=891 && x<=961 && y<=608 && y>=539){  // L'
 			    keypressedx = -1;
-                mydisplay1(keypressedx, keypressedy, keypressedz);
-                mydisplay1(keypressedx, keypressedy, keypressedz);
+                mydisplay_cube(keypressedx, keypressedy, keypressedz);
+                mydisplay_cube(keypressedx, keypressedy, keypressedz);
 			}
 			else if(x>=961 && x<=1031 && y<=608 && y>=539){  // U'
 			    keypressedy = 1;
 			}
 			else if(x>=1031 && x<=1101 && y<=608 && y>=539){  // D'
 			    keypressedy = -1;
-                mydisplay1(keypressedx, keypressedy, keypressedz);
-                mydisplay1(keypressedx, keypressedy, keypressedz);
+                mydisplay_cube(keypressedx, keypressedy, keypressedz);
+                mydisplay_cube(keypressedx, keypressedy, keypressedz);
 			}
 			else{
                 keypressedx = 3;
@@ -537,11 +541,11 @@ void mouse1(int btn, int state, int x, int y){
             }
 		}
     }
-	mydisplay1(keypressedx,keypressedy,keypressedz);
+	mydisplay_cube(keypressedx,keypressedy,keypressedz);
 }
 
 // For keyboard Input.
-void keys1(unsigned char key, int x, int y){
+void keys_cube(unsigned char key, int x, int y){
     int keypressedx = 3, keypressedy = 3,keypressedz = 3;
     switch(key){
 	case 'A':
@@ -582,11 +586,11 @@ void keys1(unsigned char key, int x, int y){
         exit(0);
     }
     
-    mydisplay1(keypressedx, keypressedy, keypressedz);
+    mydisplay_cube(keypressedx, keypressedy, keypressedz);
 }
 
 // Whenever the window is reshaped.
-void myReshape1(int w, int h){
+void myReshape_cube(int w, int h){
 	int window_height = h;
 	int window_width = w;
 	glViewport(0,0,w,h);
