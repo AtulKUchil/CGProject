@@ -5,7 +5,9 @@ This project simulates the working of a Pyaminx and a Rubik's Cube. One can cont
 * C++ installed in your System
 * Glut
 * GL
-* GLU
+* GLU  
+
+
 To install openGL in linux use the commands:
 ```bash
 sudo apt-get install freeglut3-dev
