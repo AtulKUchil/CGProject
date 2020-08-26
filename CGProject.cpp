@@ -34,14 +34,6 @@ void choose_text_frontWindow(){
 void display_frontWindow(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     choose_text_frontWindow();
-    string a = "Project By:";
-    string b = "Anirudh Sureshram - 1PE16CS020";
-    string c = "Aravindhan Venkataramanan - 1PE17CS026";
-    string d = "Atul K Uchil - 1PE17CS029";
-    draw_text_frontWindow(70, 15, a.data(),2);
-    draw_text_frontWindow(75, 12, b.data(),2);
-    draw_text_frontWindow(75, 9, c.data(),2);
-    draw_text_frontWindow(75, 6, d.data(),2);
 	glFlush();
 	glutSwapBuffers();
 }

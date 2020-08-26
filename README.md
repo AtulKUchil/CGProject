@@ -17,7 +17,16 @@ sudo apt-get install mesa-utils
 ## Usage
 In the first page you can select either Pyraminx or Rubik's Cube.  
 If the Pyraminx was selected, use the w,a,s,d keys to move the Pyraminx around and use the mouse to move the layers of the Pyraminx.  
-If the Rubik's Cube was selected, use the w,a,s,d keys to move the Rubik's Cube around and use the mouse to move the layers of the Rubik's Cube. 
+If the Rubik's Cube was selected, use the w,a,s,d keys to move the Rubik's Cube around and use the mouse to move the layers of the Rubik's Cube.  
+To compile the Code:  
+```bash
+g++ pyraminx.cpp rubixcube.cpp CGProject.cpp -lGL -lGLU -lglut
+```
+
+To run the program:  
+```bash
+./a.out
+```
 
 ## ScreenShots
 ![FirstPage](https://github.com/AtulKUchil/PyraminxAndRubiksCubeSimulation/blob/master/Pyraminx/images/firstpage.png)
