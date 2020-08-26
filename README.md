@@ -1,5 +1,5 @@
 # PyraminxAndRubiksCubeSimulation
-This project simulates the working of a Pyaminx and a Rubik's Cube. One can control the cubes using mouse and keyboard.
+This openGL project simulates the working of a Pyaminx and a Rubik's Cube. One can control the cubes using mouse and keyboard.
 
 ## Prerequisites
 * C++ installed in your System
