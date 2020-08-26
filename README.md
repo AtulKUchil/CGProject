@@ -3,9 +3,7 @@ This openGL project simulates the working of a Pyaminx and a Rubik's Cube. One c
 
 ## Prerequisites
 * C++ installed in your System
-* Glut
-* GL
-* GLU  
+* OpenGL - GL, GLU, glut
 
 
 To install openGL in linux use the commands:
