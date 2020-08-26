@@ -1676,35 +1676,36 @@ void keys_pyraminx(unsigned char key, int x, int y){
 	case 'A':
 	case 'a':
 		angley += 2;
-		if(anglex <= 0){
-			anglex += 360;
+		if(angley >= 360){
+			angley -= 360;
 		}
 		break;
 
 	case 'd':
 	case 'D':
 		angley -= 2;
-		if(anglex >=360){
-			anglex -= 360;
+		if(angley <= 0){
+			angley += 360;
 		}
 		break;
 
 	case 'w':
 	case 'W':
 		anglex += 3;
-		if(angley >= 360){
-			angley -= 360;
+		if(anglex >= 360){
+			anglex -= 360;
 		}
 		break;
 
 	case 's':
 	case 'S':
 		anglex -= 3;
-		if(angley <= 0){
-			angley += 360;
+		if(anglex <= 0){
+			anglex += 360;
 		}
 		break;
 	}
+
 
 	if(key == 'q'){
 		exit(0);

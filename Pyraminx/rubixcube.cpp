@@ -550,33 +550,33 @@ void keys_cube(unsigned char key, int x, int y){
     switch(key){
 	case 'A':
 	case 'a':
-		angle_cube_y += 2;
-		if(angle_cube_x <= 0){
-			angle_cube_x += 360;
+		angle_cube_y += 3;
+		if(angle_cube_y >= 360){
+			angle_cube_y -= 360;
 		}
 		break;
 
 	case 'd':
 	case 'D':
-		angle_cube_y -= 2;
-		if(angle_cube_x >=360){
-			angle_cube_x -= 360;
+		angle_cube_y -= 3;
+		if(angle_cube_y <= 0){
+			angle_cube_y += 360;
 		}
 		break;
 
 	case 'w':
 	case 'W':
 		angle_cube_x += 3;
-		if(angle_cube_y >= 360){
-			angle_cube_y -= 360;
+		if(angle_cube_x >= 360){
+			angle_cube_x -= 360;
 		}
 		break;
 
 	case 's':
 	case 'S':
 		angle_cube_x -= 3;
-		if(angle_cube_y <= 0){
-			angle_cube_y += 360;
+		if(angle_cube_x <= 0){
+			angle_cube_x += 360;
 		}
 		break;
 	}
